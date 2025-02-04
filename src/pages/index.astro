@@ -2,7 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
 import Recomended from "../components/Recomended.astro";
-import Lives from "../components/Lives.astro"
+import {Lives} from "../components/Lives.jsx"
 
 ---
 
@@ -11,6 +11,6 @@ import Lives from "../components/Lives.astro"
   <!-- cambiar a h-full el Recomended -->
   <div class=" flex flex-row my-2 mx-2 gap-x-4 w-full">
     <Recomended/>
-    <Lives/>
+    <Lives client:visible  />
   </div>
 </Layout>
