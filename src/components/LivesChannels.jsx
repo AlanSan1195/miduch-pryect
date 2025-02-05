@@ -1,38 +1,26 @@
 import { useEffect, useState } from "react";
+//Variables de entorno 
+import { awaitStream } from "../logic/respuesta";
 
-const url = "https://api.twitch.tv/helix/streams";
-const CLIENT_ID = "y1b3vqct87lqhyab64i28gy4qfaa35";
-const TOKEN_API = "qnrw7pe00dlfxq1xf2uz87c0ktljya";
-
-export function Lives() {
+export function LivesChannels() {
   const [isActive, setIsActive] = useState(false);
   const [streamer, setStreamer] = useState([]);
 
   useEffect(() => {
-    async function awaitStream() {
-      try {
-        const respuesta = await fetch(url, {
-          headers: {
-            "Client-ID": CLIENT_ID,
-            Authorization: `Bearer ${TOKEN_API}`,
-          },
-        });
-        const info = await respuesta.json();
-        console.log(info);
-        setStreamer(info.data || []);
-      } catch (error) {
-        console.log("error");
-      }
+    async function getStream() {
+      const data = await awaitStream()
+      setStreamer(data)
     }
-    awaitStream();
-  }, [setStreamer]);
+    getStream()
+
+  }, []);
   function showMore() {
     setIsActive(!isActive);
   }
   return (
-    <div className="relative">
+    <div className="relative flex flex-col w-full h-auto ">
       <section
-        className={`mx-4 overflow-y-hidden ${
+        className={`mx-4 overflow-y-hidden flex flex-col  ${
           isActive ? "min-h-fit" : "max-h-[400px]"
         }`}
       >
@@ -61,7 +49,7 @@ export function Lives() {
                 )}
                 alt="imagen"
               />
-              <div className="flex jus items-center content-center mx-3">
+              <div className="flex content-center mx-3">
                 <img
                   src={`https://unavatar.io/${stream.user_name}`}
                   className=" rounded-full size-12 mt-2 mr-2"
