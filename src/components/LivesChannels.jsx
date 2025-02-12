@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 //Variables de entorno 
 import { awaitStream } from "../logic/respuesta";
+import { Showmore } from "./Showmore"
 
 export function LivesChannels() {
   const [isActive, setIsActive] = useState(false);
@@ -19,9 +20,11 @@ export function LivesChannels() {
   }
   return (
     <div className="relative flex flex-col w-full h-auto ">
+      {/* esto es un componente  */}
+
       <section
         className={`mx-4 overflow-y-hidden flex flex-col  ${
-          isActive ? "min-h-fit" : "max-h-[400px]"
+          isActive ? "min-h-fit" : "max-h-[420px]"
         }`}
       >
         <div className="flex mx-3 mt-2">
@@ -32,7 +35,7 @@ export function LivesChannels() {
         </div>
 
         <div
-          className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-y-4 gap-x-2 overflow-y-hidden my-6 p-2 ${
+          className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-y-16 gap-x-2 overflow-y-hidden my-2 p-2 ${
             isActive ? "min-h-fit" : "max-h-[500px]"
           }`}
         >
@@ -72,13 +75,15 @@ export function LivesChannels() {
           ))}
         </div>
       </section>
-      <div className=" mx-4 flex justify-center items-center mt-2 ">
+      {/* este es otro componente  */}
+      {/* <div className=" mx-4 flex justify-center items-center ">
         <hr className=" mx-2 flex-1 border-t-2 border-black" />
         <button onClick={showMore}>
           <span className="text-blue-500">Show more</span>
         </button>
         <hr className="mx-2 flex-1 border-t-2 border-black" />
-      </div>
+      </div> */}
+      <Showmore showMore={showMore}/>
     </div>
   );
 }
