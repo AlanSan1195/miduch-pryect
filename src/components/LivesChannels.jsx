@@ -1,23 +1,25 @@
 import { useEffect, useState } from "react";
-//Variables de entorno 
+//Variables de entorno
 import { awaitStream } from "../logic/respuesta";
-import { Showmore } from "./Showmore"
+import { Showmore } from "./Showmore";
 
 export function LivesChannels() {
   const [isActive, setIsActive] = useState(false);
+  const [show, setShow] = useState(false);
   const [streamer, setStreamer] = useState([]);
+  const [selectStream, setSelectSream] = useState(null);
 
   useEffect(() => {
     async function getStream() {
-      const data = await awaitStream()
-      setStreamer(data)
+      const data = await awaitStream();
+      setStreamer(data);
     }
-    getStream()
-
+    getStream();
   }, []);
   function showMore() {
     setIsActive(!isActive);
   }
+
   return (
     <div className="relative flex flex-col w-full h-auto ">
       {/* esto es un componente  */}
@@ -27,9 +29,11 @@ export function LivesChannels() {
           isActive ? "min-h-fit" : "max-h-[420px]"
         }`}
       >
-        <div className="flex mx-3 mt-2">
-          <p className="font-semibold text-lg">
-            <span className="font-semibold text-cyan-600">Live channels</span>
+        <div className="flex mx-3 mt-2 ">
+          <p className="font-semibold text-lg opacity-85">
+            <span className="font-semibold text-cyan-600  ">
+              Live channels{" "}
+            </span>
             we think you’ll like
           </p>
         </div>
@@ -41,49 +45,56 @@ export function LivesChannels() {
         >
           {streamer.map((stream) => (
             <div
-              className="flex flex-col w-auto h-auto border-[2px] border-black/30 rounded-sm m-1 max-w-[300px] max-h-[400px]"
+              className="flex flex-col  w-auto h-auto border-[2px] border-black shadow-sm shadow-white/10 rounded-sm m-1 max-w-[300px] max-h-[400px]"
               key={stream.title}
             >
               <img
-                className="w-full h-auto bg-cover "
+                className="w-full h-auto bg-cover cursor-pointer "
                 src={stream.thumbnail_url.replace(
                   "{width}x{height}",
                   "250x150"
                 )}
                 alt="imagen"
+                onClick={() => setSelectSream(stream.user_login)}
               />
-              <div className="flex content-center mx-3">
+              <div className="flex items-center mx-3">
                 <img
                   src={`https://unavatar.io/${stream.user_name}`}
                   className=" rounded-full size-12 mt-2 mr-2"
                   alt="imagen"
                 />
-                <p className="font-xs font-bold whitespace-nowrap overflow-hidden text-ellipsis  ">
-                  {stream.title}
-                </p>
+                <div className="flex flex-col overflow-x-hidden">
+                  <p className="font-xs font-bold whitespace-nowrap overflow-hidden text-ellipsis  ">
+                    {stream.title}
+                  </p>
+                  <p className=" font-light opacity-70 text-xs ">{stream.user_name}</p>
+                </div>
               </div>
               <div className=" flex flex-col mt-1 gap-y-1 mx-3 ">
-                <p>{stream.user_name}</p>
-                <p>{stream.type}</p>
+                <p className=" font-semibold opacity-80">{stream.game_name}</p>
+                <p className=" font-light opacity-70">{stream.type}</p>
               </div>
               <div className="  grid grid-cols-6 md:grid-cols-6 my-3 gap-y-2 ">
-                <button className=" scale-90 border-2 border-gray-600 mx-2 rounded-full justify-center items-center min-w-max hover:transition-all hover:scale-95 ">
-                  {stream.language}
+                <button className="  border-2 border-gray-600 mx-2 p-2 rounded-full justify-center items-center min-w-max  ">
+                  {stream.tags[Math.floor(Math.random() * stream.tags.length)]}
                 </button>
               </div>
             </div>
           ))}
         </div>
       </section>
-      {/* este es otro componente  */}
-      {/* <div className=" mx-4 flex justify-center items-center ">
-        <hr className=" mx-2 flex-1 border-t-2 border-black" />
-        <button onClick={showMore}>
-          <span className="text-blue-500">Show more</span>
-        </button>
-        <hr className="mx-2 flex-1 border-t-2 border-black" />
-      </div> */}
-      <Showmore showMore={showMore}/>
+
+      <Showmore showMore={showMore} />
+      {selectStream && (
+        <div className=" w-full flex justify-center ">
+          <iframe
+            src={`https://player.twitch.tv/?channel=${selectStream}&parent=localhost`}
+            allowFullScreen
+            height="400px"
+            width="600px"
+          ></iframe>
+        </div>
+      )}
     </div>
   );
 }

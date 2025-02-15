@@ -1,5 +1,5 @@
 ---
-import background from "../assets/background.svg";
+// import background from "../assets/background.svg";
 ---
 
 <!doctype html>
@@ -12,13 +12,13 @@ import background from "../assets/background.svg";
     <title>StramSan</title>
   </head>
   <body>
-    <img id="background" src={background.src} alt="" fetchpriority="high" />
+    <!-- <img id="background" src={background.src} alt="" fetchpriority="high" /> -->
     <slot />
   </body>
 </html>
 
 <style>
-  #background {
+  /* #background {
     position: fixed;
     filter: saturate(9.9);
     
@@ -29,19 +29,20 @@ import background from "../assets/background.svg";
     z-index: -1;
    filter: blur(10px); 
 
-  }
+  } */
+   :root{
+
+    --color_primary: #161616;
+    --color-secundary: #F053A4;
+   }
 
   #container {
     font-family: Inter, Roboto, "Helvetica Neue", "Arial Nova", "Nimbus Sans",
       Arial, sans-serif;
     height: 100%;
   }
-  html.dark {
-    background-color: #0d0950;
-    color: #fff;
-  }
-
-  .dark .nav-links a {
-    color: #fff;
+  html{
+    color: white;
+    background: var(--color_primary);
   }
 </style>
