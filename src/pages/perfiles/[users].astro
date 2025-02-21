@@ -1,0 +1,21 @@
+---
+import type { GetStaticPaths } from "astro";
+// Importa los componentes y configuraciones necesarias
+import Layout from "../../layouts/Layout.astro"; // Ajusta la ruta si es necesario
+import { Header } from "../../components/Header.jsx"; // Ajusta la ruta si es necesario
+import { CLIENT_ID, TOKEN_API, urlStreamer } from "../../services/apiTwitch"; // Ajusta la ruta si es necesario
+import { RecommendedChannels } from "../../components/RecommendedChannels";
+
+export const getStaticPaths = (() => {
+  return [
+    { params: { name: "spearow" } },
+    { params: { name: "Xokas" } }
+];
+}) satisfies GetStaticPaths;
+const {name} = Astro.params;
+---
+
+<Layout>
+
+  <h1>{name}</h1>
+</Layout>

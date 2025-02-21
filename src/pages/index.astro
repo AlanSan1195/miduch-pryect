@@ -1,16 +1,15 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Header from "../components/Header.astro";
-import {RecommendedChannels} from "../components/RecommendedChannels.jsx";
-import {LivesChannels} from "../components/LivesChannels.jsx"
-
+import { Header } from "../components/Header.jsx";
+import { RecommendedChannels } from "../components/RecommendedChannels.jsx";
+import { LivesChannels } from "../components/LivesChannels.jsx";
 ---
 
 <Layout>
-  <Header /> 
+  <Header client:visible />
   <!-- cambiar a h-full el Recomended -->
-  <div class=" flex flex-row my-2 mx-1 gap-x-4 w-full">
-    <RecommendedChannels client:visible/>
-    <LivesChannels client:visible  />
+  <div class="flex flex-row my-2 mx-1 gap-x-4 w-full">
+    <RecommendedChannels client:visible />
+    <LivesChannels client:visible />
   </div>
 </Layout>

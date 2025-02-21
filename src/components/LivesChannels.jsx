@@ -45,11 +45,11 @@ export function LivesChannels() {
         >
           {streamer.map((stream) => (
             <div
-              className="flex flex-col  w-auto h-auto border-[2px] border-black shadow-sm shadow-white/10 rounded-sm m-1 max-w-[300px] max-h-[400px]"
+              className="flex flex-col   w-auto h-auto border-[2px] border-black shadow-sm shadow-white/10 rounded-sm m-1 max-w-[300px] max-h-[400px]"
               key={stream.title}
             >
               <img
-                className="w-full h-auto bg-cover cursor-pointer "
+                className="w-full h-auto bg-cover cursor-pointer  "
                 src={stream.thumbnail_url.replace(
                   "{width}x{height}",
                   "250x150"
@@ -57,7 +57,7 @@ export function LivesChannels() {
                 alt="imagen"
                 onClick={() => setSelectSream(stream.user_login)}
               />
-              <div className="flex items-center mx-3">
+              <div className="flex items-center mx-3 ">
                 <img
                   src={`https://unavatar.io/${stream.user_name}`}
                   className=" rounded-full size-12 mt-2 mr-2"
@@ -67,7 +67,7 @@ export function LivesChannels() {
                   <p className="font-xs font-bold whitespace-nowrap overflow-hidden text-ellipsis  ">
                     {stream.title}
                   </p>
-                  <p className=" font-light opacity-70 text-xs ">{stream.user_name}</p>
+                  <p className=" font-light opacity-70 text-xs cursor-pointer ">{stream.user_name}</p>
                 </div>
               </div>
               <div className=" flex flex-col mt-1 gap-y-1 mx-3 ">

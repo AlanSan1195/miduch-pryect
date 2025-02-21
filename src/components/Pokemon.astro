@@ -1,0 +1,13 @@
+---
+interface Props {
+  url: string;
+  name: string;
+}
+
+const { name, url } = Astro.props;
+const img = "https://pokeapi.co/api/v2/pokemon?offset=20&limit=10";
+---
+
+<a href={`/users/${name}`}>
+<p>{name}</p>
+</a>

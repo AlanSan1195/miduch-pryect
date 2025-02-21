@@ -1,4 +1,4 @@
-import {url, CLIENT_ID, TOKEN_API} from "../services/apiTwitch";
+import {url, CLIENT_ID, TOKEN_API, urlStreamer} from "../services/apiTwitch";
 
 export async function awaitStream() {
   try {
@@ -9,11 +9,14 @@ export async function awaitStream() {
       },
     });
     const info = await respuesta.json();
-    console.log(info);
+    console.log("tu info:", info);
     return info.data || [];
   } catch (error) {
     console.log("error");
     return []
   }
 }
+
+
+
 

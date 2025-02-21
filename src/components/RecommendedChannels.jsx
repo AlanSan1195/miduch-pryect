@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { awaitStream } from "../logic/respuesta";
 import { Showmore, ShowmoreWhitActive } from "./Showmore";
+import { CLIENT_ID, TOKEN_API, urlStreamer } from "../services/apiTwitch";
+
 
 export function RecommendedChannels() {
   const [isActive, setIsActive] = useState(false);
@@ -13,7 +15,7 @@ export function RecommendedChannels() {
       const data = await awaitStream();
       setStreamer(data);
     }
-   
+
     geStream();
   }, []);
   function hidden() {
@@ -64,7 +66,9 @@ export function RecommendedChannels() {
         </div>
       </div>
       <div
-        className={`mx-1 overflow-y-hidden ${isShow ? " h-auto " : "max-h-[334px]"}`}
+        className={`mx-1 overflow-y-hidden ${
+          isShow ? " h-auto " : "max-h-[334px]"
+        }`}
       >
         <div
           className={`${
@@ -81,37 +85,40 @@ export function RecommendedChannels() {
                 setSelectStream(!selectStream);
               }}
             >
-              <img
-                className={`${
-                  isActive ? "size-10  rounded-full" : " size-10 rounded-full"
-                }`}
-                src={`https://unavatar.io/${stream.user_name}`}
-                alt={`https://unavatar.io/${stream.user_name}`}
-              />
+              <a href={`${stream.user_name}`}  className="flex items-center">
+                <img
+                  className={`${
+                    isActive ? "size-10  rounded-full" : " size-10 rounded-full"
+                  }`}
+                  src={`https://unavatar.io/${stream.user_name}`}
+                  alt={`https://unavatar.io/${stream.user_name}`}
+                />
 
-              <div
-                className={`${
-                  isActive
-                    ? " hidden "
-                    : " ml-1 w-full  flex items-center justify-between"
-                }`}
-              >
-                <div>
-                  <h2 className=" font-bold opacity-80">{stream.user_name}</h2>
-                  <p className=" font-light opacity-70 text-pretty">
-                    {stream.game_name}
-                  </p>
+                <div
+                  className={`${
+                    isActive
+                      ? " hidden "
+                      : " ml-1 w-full  flex items-center justify-between"
+                  }`}
+                >
+                  <div>
+                    <h2 className=" font-bold opacity-80">
+                      {stream.user_name}
+                    </h2>
+                    <p className=" font-light opacity-70 text-pretty">
+                      {stream.game_name}
+                    </p>
+                  </div>
+                  <div>
+                    <div className=" size-2 bg-red-600 rounded-full">{""}</div>
+                  </div>
                 </div>
-                <div>
-                  <div className=" size-2 bg-red-600 rounded-full">{""}</div>
-                </div>
-              </div>
+              </a>
             </div>
           ))}
         </div>
       </div>
       <ShowmoreWhitActive showMore={showMore} isActive={isActive} />
-      
     </div>
   );
 }
