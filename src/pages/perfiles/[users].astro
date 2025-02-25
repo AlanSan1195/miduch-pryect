@@ -1,21 +1,49 @@
 ---
-import type { GetStaticPaths } from "astro";
-// Importa los componentes y configuraciones necesarias
-import Layout from "../../layouts/Layout.astro"; // Ajusta la ruta si es necesario
-import { Header } from "../../components/Header.jsx"; // Ajusta la ruta si es necesario
-import { CLIENT_ID, TOKEN_API, urlStreamer } from "../../services/apiTwitch"; // Ajusta la ruta si es necesario
-import { RecommendedChannels } from "../../components/RecommendedChannels";
+export const prerender = false;
 
-export const getStaticPaths = (() => {
-  return [
-    { params: { name: "spearow" } },
-    { params: { name: "Xokas" } }
-];
-}) satisfies GetStaticPaths;
-const {name} = Astro.params;
+import Layout from "../../layouts/Layout.astro";
+import { Header } from "../../components/Header.jsx";
+import { CLIENT_ID, TOKEN_API } from "../../services/apiTwitch";
+
+const { usuario } = Astro.params;
+
+const obtenerUsuario = async (nombreUsuario) => {
+  const response = await fetch(
+    `https://api.twitch.tv/helix/users?login=${encodeURIComponent(nombreUsuario)}`,
+    {
+      headers: {
+        "Client-ID": CLIENT_ID,
+        Authorization: `Bearer ${TOKEN_API}`,
+      },
+    }
+  );
+
+  if (!response.ok) {
+    return null;
+  }
+
+  const data = await response.json();
+  return data.data[0];
+};
+
+const usuarioData = await obtenerUsuario(usuario);
 ---
 
 <Layout>
-
-  <h1>{name}</h1>
+  <Header client:visible />
+  <div class="flex flex-row my-2 mx-1 gap-x-4 w-full">
+    {usuarioData ? (
+      <div>
+        <h1>Perfil de {usuarioData.display_name}</h1>
+        <p>ID: {usuarioData.id}</p>
+        <p>Descripción: {usuarioData.description}</p>
+        <img
+          src={usuarioData.profile_image_url}
+          alt={`Imagen de ${usuarioData.display_name}`}
+        />
+      </div>
+    ) : (
+      <h1>Usuario no encontrado</h1>
+    )}
+  </div>
 </Layout>

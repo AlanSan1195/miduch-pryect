@@ -6,6 +6,7 @@ import { Showmore } from "./Showmore";
 export function LivesChannels() {
   const [isActive, setIsActive] = useState(false);
   const [show, setShow] = useState(false);
+  const [isShow, setIsShow] = useState(false);
   const [streamer, setStreamer] = useState([]);
   const [selectStream, setSelectSream] = useState(null);
 
@@ -18,19 +19,20 @@ export function LivesChannels() {
   }, []);
   function showMore() {
     setIsActive(!isActive);
+    setIsShow(!isShow);
   }
 
   return (
-    <div className="relative flex flex-col w-full h-auto ">
+    <div className="relative flex flex-col w-full h-auto  ">
       {/* esto es un componente  */}
 
       <section
-        className={`mx-4 overflow-y-hidden flex flex-col  ${
+        className={` mx-6 overflow-y-hidden flex flex-col  ${
           isActive ? "min-h-fit" : "max-h-[420px]"
         }`}
       >
         <div className="flex mx-3 mt-2 ">
-          <p className="font-semibold text-lg opacity-85">
+          <p className="font-semibold text-xl opacity-85">
             <span className="font-semibold text-cyan-600  ">
               Live channels{" "}
             </span>
@@ -84,7 +86,7 @@ export function LivesChannels() {
         </div>
       </section>
 
-      <Showmore showMore={showMore} />
+      <Showmore showMore={showMore} isShow={isShow} />
       {selectStream && (
         <div className=" w-full flex justify-center ">
           <iframe

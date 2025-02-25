@@ -3,7 +3,6 @@ import { useStream } from "../hooks/useStream";
 import { useSearch } from "../hooks/useSearch";
 
 export function Header() {
- 
   const { search, setSearch, error } = useSearch();
   // necesitamos un useStream
   const { streams } = useStream(search);
@@ -13,8 +12,9 @@ export function Header() {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log("Buscando:", search);
-    const urll =   window.location.href = `/${encodeURIComponent(search)}`;
-    console.log(urll);
+    const urlStreamer =
+      (window.location.href = `https://player.twitch.tv/?channel=${search}&parent=localhost`);
+    console.log(urlStreamer);
   };
 
   // Actualiza el estado con el valor del input
@@ -29,8 +29,8 @@ export function Header() {
         <h1 className="font-semibold text-lg">Sanstream</h1>
       </div>
 
-      <div>
-        <form action={`/perfiles/${encodeURIComponent(search)}`}  onSubmit={handleSubmit}>
+      <div >
+        <form className="flex" action="" onSubmit={handleSubmit}>
           <input
             onChange={handleChange}
             className="border-2 opacity-80 border-rose text-black"
@@ -39,20 +39,20 @@ export function Header() {
           />
           <button
             type="submit"
-            className="bg-zinc-700 shadow-md rounded-sm px-2 opacity-80"
+            className="bg-zinc-700 shadow-md rounded-sm px-2 opacity-80 hidden md:flex "
           >
             Search
           </button>
         </form>
-      
+
         {error && <p className="text-rose font-light">{error}</p>}
       </div>
 
       <div className="flex gap-x-2 items-center justify-center">
-        <button className="bg-zinc-700 rounded-md px-2 py-1 text-sm text-white">
+        <button className="bg-zinc-700 rounded-md p-1 text-xs text-white">
           Log in
         </button>
-        <button className="bg-rose rounded-md px-2 py-1 text-sm">
+        <button className="bg-rose rounded-md p-1 text-xs text-white">
           Sign Up
         </button>
       </div>
