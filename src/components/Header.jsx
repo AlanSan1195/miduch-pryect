@@ -24,10 +24,10 @@ export function Header() {
 
   return (
     <header className="relative flex justify-between bg-neutral-900 border-b-[2px] shadow-sm shadow-white/10 border-black px-3 py-3">
-      <div className="flex items-center gap-x-1">
+      <a href="/" className="flex items-center gap-x-1 hover:cursor-pointer">
         <div className="h-4 w-4 bg-rose rounded-sm opacity-80"></div>
-        <h1 className="font-semibold text-lg">Sanstream</h1>
-      </div>
+        <h1  className=" hover:cursor-pointer font-semibold text-lg">Sanstream</h1>
+      </a>
 
       <div >
         <form className="flex" action="" onSubmit={handleSubmit}>

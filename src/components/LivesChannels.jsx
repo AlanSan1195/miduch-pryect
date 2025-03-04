@@ -5,10 +5,8 @@ import { Showmore } from "./Showmore";
 
 export function LivesChannels() {
   const [isActive, setIsActive] = useState(false);
-  const [show, setShow] = useState(false);
   const [isShow, setIsShow] = useState(false);
   const [streamer, setStreamer] = useState([]);
-  const [selectStream, setSelectSream] = useState(null);
 
   useEffect(() => {
     async function getStream() {
@@ -57,7 +55,12 @@ export function LivesChannels() {
                   "250x150"
                 )}
                 alt="imagen"
-                onClick={() => setSelectSream(stream.user_login)}
+                onClick={() =>
+                  window.open(
+                    `/perfiles/${stream.user_name}&parent=localhost`,
+                    "_blank"
+                  )
+                }
               />
               <div className="flex items-center mx-3 ">
                 <img
@@ -69,7 +72,9 @@ export function LivesChannels() {
                   <p className="font-xs font-bold whitespace-nowrap overflow-hidden text-ellipsis  ">
                     {stream.title}
                   </p>
-                  <p className=" font-light opacity-70 text-xs cursor-pointer ">{stream.user_name}</p>
+                  <p className=" font-light opacity-70 text-xs cursor-pointer ">
+                    {stream.user_name}
+                  </p>
                 </div>
               </div>
               <div className=" flex flex-col mt-1 gap-y-1 mx-3 ">
@@ -87,16 +92,6 @@ export function LivesChannels() {
       </section>
 
       <Showmore showMore={showMore} isShow={isShow} />
-      {selectStream && (
-        <div className=" w-full flex justify-center ">
-          <iframe
-            src={`https://player.twitch.tv/?channel=${selectStream}&parent=localhost`}
-            allowFullScreen
-            height="400px"
-            width="600px"
-          ></iframe>
-        </div>
-      )}
     </div>
   );
 }

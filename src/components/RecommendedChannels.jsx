@@ -1,14 +1,12 @@
 import { awaitStream } from "../logic/respuesta";
 import { useEffect, useState } from "react";
-import { Showmore, ShowmoreWhitActive } from "./Showmore";
-import { CLIENT_ID, TOKEN_API, urlStreamer } from "../services/apiTwitch";
+import {ShowmoreWhitActive } from "./Showmore";
 import { TooltipColapsar, TooltipExpandir } from "./Tooltip";
 
 export function RecommendedChannels() {
   const [isActive, setIsActive] = useState(false);
   const [isShow, setShow] = useState(false);
   const [streamer, setStreamer] = useState([]);
-  const [selectStream, setSelectStream] = useState(null);
   const [isShowing, setIsShowing] = useState(false);
 
   useEffect(() => {
@@ -30,7 +28,7 @@ export function RecommendedChannels() {
   return (
     <div
       id="recomended"
-      className={` border-r-[2px] border-black shadow-sm shadow-white/10   min-h-dvh text-xs flex flex-col overflow-y-auto overflow-x-hidden w-auto`}
+      className={` border-r-[2px] border-black shadow-sm shadow-white/10  h-screen text-xs flex flex-col overflow-y-auto overflow-x-hidden w-auto`}
     >
       {/* //RECOMEND CHANNELS */}
       <div
@@ -84,9 +82,11 @@ export function RecommendedChannels() {
             <div
               key={stream.title}
               className=" flex p-1 cursor-pointer  hover:bg-white/10 rounded-md  "
-              onClick={() => {
-                setSelectStream(!selectStream);
-              }}
+              onClick={() =>
+                window.open(
+                  `/perfiles/${stream.user_name}&parent=localhost`
+                )
+              }
             >
               <a href={`${stream.user_name}`} className="flex items-center">
                 <img

@@ -1,0 +1,18 @@
+---
+import { Header } from "../../components/Header";
+import Layout from "../../layouts/Layout.astro";
+import { PerfilUser } from "../../components/Perfiles";
+import { RecommendedChannels } from "../../components/RecommendedChannels";
+export const prerender = false;
+const { user } = Astro.params;
+---
+
+<Layout>
+  <Header client:visible />
+  <div class="flex flex-row my-2 mx-1 gap-x-4 w-full">
+    <div>
+      <RecommendedChannels client:visible />
+    </div>
+    <PerfilUser client:only="react" user={user} />
+  </div>
+</Layout>

@@ -9,7 +9,9 @@ import { LivesChannels } from "../components/LivesChannels.jsx";
   <Header client:visible />
   <!-- cambiar a h-full el Recomended -->
   <div class="flex flex-row my-2 mx-1 gap-x-4 w-full">
-    <RecommendedChannels  client:visible />
+    <div>
+      <RecommendedChannels client:visible />
+    </div>
     <LivesChannels client:visible />
   </div>
 </Layout>
