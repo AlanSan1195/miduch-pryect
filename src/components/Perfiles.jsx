@@ -42,7 +42,7 @@ export function PerfilUser({ user }) {
     streamLive();
   }, [user]);
   return (
-    <div className="flex flex-col h-screen gap-y-4">
+    <div className="flex flex-col h-screen w-full gap-y-4">
       {streamLive ? (
         <>
           <iframe
