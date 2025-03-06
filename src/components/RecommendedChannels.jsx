@@ -94,6 +94,7 @@ export function RecommendedChannels() {
                     isActive ? "size-10  rounded-full" : " size-10 rounded-full"
                   }`}
                   src={`https://unavatar.io/${stream.user_name}`}
+                  
                   alt={`https://unavatar.io/${stream.user_name}`}
                 />
 

@@ -13,7 +13,10 @@ export function Header() {
     event.preventDefault();
     console.log("Buscando:", search);
     const urlStreamer =
-      (window.location.href = `https://player.twitch.tv/?channel=${search}&parent=localhost`);
+    window.open(
+      `/perfiles/${search}&parent=localhost`,
+
+    )
     console.log(urlStreamer);
   };
 

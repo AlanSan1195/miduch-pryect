@@ -10,10 +10,10 @@ export async function awaitStream() {
       headers,
     });
     const info = await respuesta.json();
-    console.log("tu info:", info);
     return info.data || [];
   } catch (error) {
     console.log("error");
+
     return [];
   }
 }

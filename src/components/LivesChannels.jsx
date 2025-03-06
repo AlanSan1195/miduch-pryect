@@ -8,6 +8,7 @@ export function LivesChannels() {
   const [isShow, setIsShow] = useState(false);
   const [streamer, setStreamer] = useState([]);
 
+
   useEffect(() => {
     async function getStream() {
       const data = await awaitStream();
@@ -58,7 +59,7 @@ export function LivesChannels() {
                 onClick={() =>
                   window.open(
                     `/perfiles/${stream.user_name}&parent=localhost`,
-                    "_blank"
+
                   )
                 }
               />
