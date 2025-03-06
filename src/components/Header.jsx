@@ -13,10 +13,7 @@ export function Header() {
     event.preventDefault();
     console.log("Buscando:", search);
     const urlStreamer =
-    window.open(
-      `/perfiles/${search}&parent=localhost`,
-
-    )
+    window.location.href = `/perfiles/${search}`;
     console.log(urlStreamer);
   };
 

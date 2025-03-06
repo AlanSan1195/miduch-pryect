@@ -1,6 +1,6 @@
 import { awaitStream } from "../logic/respuesta";
 import { useEffect, useState } from "react";
-import {ShowmoreWhitActive } from "./Showmore";
+import { ShowmoreWhitActive } from "./Showmore";
 import { TooltipColapsar, TooltipExpandir } from "./Tooltip";
 
 export function RecommendedChannels() {
@@ -82,19 +82,16 @@ export function RecommendedChannels() {
             <div
               key={stream.title}
               className=" flex p-1 cursor-pointer  hover:bg-white/10 rounded-md  "
-              onClick={() =>
-                window.open(
-                  `/perfiles/${stream.user_name}&parent=localhost`
-                )
-              }
             >
-              <a href={`${stream.user_name}`} className="flex items-center">
+              <a
+                href={`/perfiles/${stream.user_name}`}
+                className="flex items-center"
+              >
                 <img
                   className={`${
                     isActive ? "size-10  rounded-full" : " size-10 rounded-full"
                   }`}
                   src={`https://unavatar.io/${stream.user_name}`}
-                  
                   alt={`https://unavatar.io/${stream.user_name}`}
                 />
 
