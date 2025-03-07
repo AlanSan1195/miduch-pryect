@@ -20,7 +20,7 @@ export function ShowmoreWhitActive({ showMore, isActive, isShow }) {
     <div className="  flex justify-center items-center ">
       <hr className=" mx-2 flex-1 border-t-1 border-zinc-800 " />
       <button onClick={showMore}>
-        {isActive ? (
+        {!isActive ? (
           <div className=" flex  items-center group  ">
             <svg
               xmlns="http://www.w3.org/2000/svg"

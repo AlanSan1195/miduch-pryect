@@ -21,7 +21,7 @@ export function LivesChannels() {
   }
 
   return (
-    <div className="relative flex flex-col w-full h-auto  ">
+    <div className="flex flex-col w-full h-auto  ">
       {/* esto es un componente  */}
 
       <section
@@ -49,14 +49,14 @@ export function LivesChannels() {
               key={stream.title}
             >
               <a href={`/perfiles/${stream.user_name}`}>
-                <img
-                  className="w-full h-auto bg-cover cursor-pointer  "
-                  src={stream.thumbnail_url.replace(
-                    "{width}x{height}",
-                    "250x150"
-                  )}
-                  alt="imagen"
-                />
+              <img
+                className="w-full h-auto bg-cover cursor-pointer  "
+                src={stream.thumbnail_url.replace(
+                  "{width}x{height}",
+                  "250x150"
+                )}
+                alt="imagen"
+              />
                 <div className="flex items-center mx-3 ">
                   <img
                     src={`https://unavatar.io/${stream.user_name}`}

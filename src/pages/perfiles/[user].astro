@@ -11,7 +11,7 @@ const { user } = Astro.params;
   <Header client:visible />
   <div class="flex flex-row my-2 mx-2 gap-x-4 ">
     <div>
-      <RecommendedChannels client:visible  />
+      <RecommendedChannels client:visible visible={false}  />
     </div>
     <PerfilUser client:only="react" user={user} />
   </div>
