@@ -49,14 +49,14 @@ export function LivesChannels() {
               key={stream.title}
             >
               <a href={`/perfiles/${stream.user_name}`}>
-              <img
-                className="w-full h-auto bg-cover cursor-pointer  "
-                src={stream.thumbnail_url.replace(
-                  "{width}x{height}",
-                  "250x150"
-                )}
-                alt="imagen"
-              />
+                <img
+                  className="w-full h-auto bg-cover cursor-pointer  "
+                  src={stream.thumbnail_url.replace(
+                    "{width}x{height}",
+                    "250x150"
+                  )}
+                  alt="imagen"
+                />
                 <div className="flex items-center mx-3 ">
                   <img
                     src={`https://unavatar.io/${stream.user_name}`}
@@ -77,11 +77,7 @@ export function LivesChannels() {
                 <p className=" font-semibold opacity-80">{stream.game_name}</p>
                 <p className=" font-light opacity-70">{stream.type}</p>
               </div>
-              <div className="  grid grid-cols-6 md:grid-cols-6 my-3 gap-y-2 ">
-                <button className="  border-2 border-gray-600 mx-2 p-2 rounded-full justify-center items-center min-w-max  ">
-                  {stream.tags[Math.floor(Math.random() * stream.tags.length)]}
-                </button>
-              </div>
+              <div className="  grid grid-cols-6 md:grid-cols-6 my-3 gap-y-2 "></div>
             </div>
           ))}
         </div>
