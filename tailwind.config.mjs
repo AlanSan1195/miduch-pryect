@@ -5,6 +5,7 @@ export default {
 		extend: {
 			colors:{
 				'rose': '#F053A4',
+				'primary': '#161616'
 			}
 		},
 	},
