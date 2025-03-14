@@ -25,7 +25,7 @@ export function LivesChannels() {
       {/* esto es un componente  */}
 
       <section
-        className={` mx-6 overflow-y-hidden flex flex-col  ${
+        className={` mx-12 overflow-y-hidden flex flex-col  ${
           isActive ? "min-h-fit" : "max-h-[420px]"
         }`}
       >
