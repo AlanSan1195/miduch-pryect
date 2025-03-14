@@ -35,10 +35,10 @@ export function RecommendedChannels({ visible = true }) {
   return (
     <div
       id="recomended"
-      className="border-r-[2px] border-black shadow-sm shadow-white/10 h-full text-xs flex flex-col overflow-y-auto overflow-x-hidden w-auto "
+      className="  bg-primary border-r-[2px] border-black shadow-sm shadow-white/10 h-screen text-xs flex flex-col overflow-y-auto overflow-x-hidden w-auto "
     >
       {/* //RECOMEND CHANNELS */}
-      <div className={`${isActive ? "flex":  "flex justify-between items-center absolute"}`}>
+      <div className={`${isActive ? "flex -auto":  "flex justify-between items-center absolute"}`}>
         <span
           className={`${isActive ?  "flex font-bold mx-2 mt-2 text-[15px] opacity-80": "hidden"}`}
         >
@@ -72,7 +72,7 @@ export function RecommendedChannels({ visible = true }) {
         <div
           className={`${
             isActive ? " " : " mt-11 "
-          } ${isShow ? "  h-[480px] overflow-y-hidden": " h-48 overflow-y-hidden"}`} // Altura dinámica basada en isActive
+          } ${isShow ? "  h-[480px] overflow-y-auto": " h-48 overflow-y-hidden"}`} // Altura dinámica basada en isActive
         >
           {streamer.map((stream) => (
             <div key={stream.title} className="flex p-1 cursor-pointer hover:bg-white/10 rounded-md justify-center">
@@ -105,7 +105,7 @@ export function RecommendedChannels({ visible = true }) {
         isShow={isShow}
       />
   
-      <div className={`  ${isActive ? "h-auto" : ""}`}>
+      <div className={`  ${isActive ? "h-auto overflow-auto" : ""}`}>
         {yourFollows.map((follow) => (
           <div key={follow.id} className="flex p-1 cursor-pointer hover:bg-white/10 rounded-md justify-center">
           <a href={`/perfiles/${follow.broadcaster_login}`} className="flex items-center">

@@ -21,11 +21,11 @@ export function LivesChannels() {
   }
 
   return (
-    <div className="flex flex-col w-full h-auto  ">
+    <div className=" px-10 flex flex-col w-full h-auto  ">
       {/* esto es un componente  */}
 
       <section
-        className={` mx-12 overflow-y-hidden flex flex-col  ${
+        className={` overflow-y-hidden flex flex-col  ${
           isActive ? "min-h-fit" : "max-h-[420px]"
         }`}
       >

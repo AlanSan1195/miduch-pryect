@@ -8,9 +8,14 @@ export function SanstreamLyout() {
 
   return (
     <div className="flex  ">
-      {/* Pasa la función para cambiar la visibilidad */}
+      <div className=" fixed z-00  ">
+
       <RecommendedChannels visible={isVisible} setVisible={setIsVisible} />
+      </div>
+      <div className=" ml-60">
       <LivesChannels  visible={isVisible} />
+
+      </div>
     </div>
   );
 }
