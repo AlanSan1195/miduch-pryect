@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 import { awaitStream } from "../logic/respuesta";
 import { Showmore } from "./Showmore";
 
-export function LivesChannels() {
-  const [isActive, setIsActive] = useState(false);
+export function LivesChannels({visible}) {
+  const [showMore, setShowMore] = useState(false);
   const [isShow, setIsShow] = useState(false);
   const [streamer, setStreamer] = useState([]);
 
@@ -15,8 +15,8 @@ export function LivesChannels() {
     }
     getStream();
   }, []);
-  function showMore() {
-    setIsActive(!isActive);
+  function show() {
+    setShowMore(!showMore);
     setIsShow(!isShow);
   }
 
@@ -26,7 +26,7 @@ export function LivesChannels() {
 
       <section
         className={` overflow-y-hidden flex flex-col  ${
-          isActive ? "min-h-fit" : "max-h-[420px]"
+          showMore ? "min-h-fit" : "max-h-[420px]"
         }`}
       >
         <div className="flex mx-3 mt-2 ">
@@ -40,7 +40,7 @@ export function LivesChannels() {
 
         <div
           className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-y-16 gap-x-2 overflow-y-hidden my-2 p-2 ${
-            isActive ? "min-h-fit" : "max-h-[500px]"
+            showMore ? "min-h-fit" : "max-h-[500px]"
           }`}
         >
           {streamer.map((stream) => (
@@ -83,7 +83,7 @@ export function LivesChannels() {
         </div>
       </section>
 
-      <Showmore showMore={showMore} isShow={isShow} />
+      <Showmore showMore={show} isShow={isShow} />
     </div>
   );
 }
