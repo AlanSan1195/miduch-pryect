@@ -11,8 +11,17 @@ const { user } = Astro.params;
   <Header client:visible />
   <div class="flex flex-row my-2 mx-2 gap-x-4 ">
     <div>
-      <RecommendedChannels client:visible visible={false}  />
+      <RecommendedChannels client:visible  />
     </div>
     <PerfilUser client:only="react" user={user} />
   </div>
 </Layout>
+
+
+
+<!-- experimetal con el de perfils despues del cambio de createContext -->
+
+<!-- <Layout>
+  <Header client:visible />
+  <AppWraperPerfil client:only="react" user={user} />
+</Layout> -->

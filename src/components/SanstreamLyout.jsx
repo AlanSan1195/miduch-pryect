@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from "react";
 //aprendimos **createContext()**
-const initialContext = createContext(null)
+const initialContext = createContext(true)
 //Basicamente es un componente que comparte un estado inicial y que le dices que renderizara lo que yo ponga dentro de el {{children}}
 
 export function SanstreamLyout({children}) {
