@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 //Variables de entorno
 import { awaitStream } from "../logic/respuesta";
 import { Showmore } from "./Showmore";
+import { useInitialContext } from "./SanstreamLyout";
 
-export function LivesChannels({visible}) {
+export function LivesChannels() {
+  const { context: isActive, setContext: setIsActive } = useInitialContext();
   const [showMore, setShowMore] = useState(false);
   const [isShow, setIsShow] = useState(false);
   const [streamer, setStreamer] = useState([]);
@@ -21,7 +23,12 @@ export function LivesChannels({visible}) {
   }
 
   return (
-    <div className=" px-10 flex flex-col w-full h-auto  ">
+    <div
+      id="live-channels"
+      className={`px-10 flex flex-col h-auto  w-auto ${
+        isActive ? " ml-64" : "ml-20"
+      }`}
+    >
       {/* esto es un componente  */}
 
       <section
@@ -39,13 +46,15 @@ export function LivesChannels({visible}) {
         </div>
 
         <div
-          className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-y-16 gap-x-2 overflow-y-hidden my-2 p-2 ${
+          className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 ${
+            isActive ? "xl:grid-cols-3 " : "xl:grid-cols-4 gap-x-2"
+          }  gap-y-16  overflow-y-hidden my-2 p-2 ${
             showMore ? "min-h-fit" : "max-h-[500px]"
           }`}
         >
           {streamer.map((stream) => (
             <div
-              className="flex flex-col   w-auto h-auto border-[2px] border-black shadow-sm shadow-white/10 rounded-sm m-1 max-w-[300px] max-h-[400px]"
+              className="flex flex-col w-auto h-auto border-[2px] border-black shadow-sm shadow-white/10 rounded-sm m-1 max-w-[350px] max-h-[400px]"
               key={stream.title}
             >
               <a href={`/perfiles/${stream.user_name}`}>
