@@ -36,7 +36,7 @@ export function RecommendedChannels() {
   return (
     <div
       id="recomended"
-      className={`  bg-primary fixed border-r-[2px] border-black shadow-sm shadow-white/10 h-screen text-xs flex flex-col  ${isActive ? "w-60":"w-20"}`}
+      className={`  bg-primary fixed border-r-[2px] border-black shadow-sm shadow-white/10 h-screen text-xs flex flex-col  ${isActive  ? "w-60":"w-20"}`}
     >
       {/* //RECOMEND CHANNELS */}
       <div
