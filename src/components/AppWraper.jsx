@@ -1,4 +1,4 @@
-import { SanstreamLyout } from "./SanstreamLyout";
+import { SanstreamLyout, SanstreamLyoutPerfil } from "./SanstreamLyout";
 import { Header } from "./Header";
 import { RecommendedChannels } from "./RecommendedChannels";
 import { LivesChannels } from "./LivesChannels";
@@ -14,11 +14,9 @@ export function AppWraper() {
 }
 export function AppWraperPerfil({user}) {
   return (
-    <SanstreamLyout>
-      <Header/>
+    <SanstreamLyoutPerfil>
         <RecommendedChannels/>
-        <LivesChannels/>
         <PerfilUser user ={user}/>
-    </SanstreamLyout>
+    </SanstreamLyoutPerfil>
   );
 }

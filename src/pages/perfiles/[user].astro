@@ -3,18 +3,18 @@ import { Header } from "../../components/Header";
 import Layout from "../../layouts/Layout.astro";
 import { PerfilUser } from "../../components/Perfiles";
 import { RecommendedChannels } from "../../components/RecommendedChannels";
+import { AppWraperPerfil } from "../../components/AppWraper";
 export const prerender = false;
 const { user } = Astro.params;
 ---
 
-<Layout>
+<!-- <Layout>
   <RecommendedChannels client:visible />
   <PerfilUser client:only="react" user={user} />
+</Layout> -->
+
+<Layout>
+  <AppWraperPerfil client:visible user={user} />
 </Layout>
 
-<!-- experimetal con el de perfils despues del cambio de createContext -->
 
-<!-- <Layout>
-  <Header client:visible />
-  <AppWraperPerfil client:only="react" user={user} />
-</Layout> -->

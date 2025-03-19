@@ -17,6 +17,8 @@ export async function awaitStream() {
 
     console.log(infoStream);
     return infoStream || [];
+
+    
   } catch (error) {
     console.log("error");
 

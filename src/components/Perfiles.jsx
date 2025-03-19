@@ -1,8 +1,11 @@
 import { CLIENT_ID, TOKEN_API } from "../services/apiTwitch";
 import { useEffect, useState } from "react";
+import { useInitialContext } from "./SanstreamLyout";
 
 export function PerfilUser({ user }) {
   const [streamLive, setStreamerLive] = useState(null);
+  const { context: isActive, setContext: setIsActive } = useInitialContext();
+
   const [videos, setVideos] = useState([]);
   useEffect(() => {
     const streamLive = async () => {
@@ -59,17 +62,17 @@ export function PerfilUser({ user }) {
     streamLive();
   }, [user]);
   return (
-    <div className=" ml-20 flex flex-col h-full w-full gap-y-4">
+    <div className={`ml-20 flex flex-col h-full w-auto gap-y-4  ${isActive ? "ml-64" : "ml-20"}`}>
       {streamLive ? (
         <>
           <iframe
-            className=" flex justify-center mx-auto h-[500px] w-full "
+            className=" bg-rose border-white pt-[2.5px] flex justify-center mx-auto h-[500px] w-full "
             src={`https://player.twitch.tv/?channel=${user}&parent=localhost`}
           ></iframe>
           <div className="flex flex-col gap-y-2 mx-2 ">
             <div className="flex items-center gap-x-2  border-[2px] border-black shadow-sm shadow-white/10  rounded-md p-2">
               <img
-                src={`${streamLive.offline_image_url || user}`}
+                src={`${streamLive.profile_image_url || user}`}
                 alt="Avatar"
                 className=" size-20 rounded-full"
               />

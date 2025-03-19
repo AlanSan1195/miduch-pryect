@@ -15,6 +15,20 @@ export function SanstreamLyout({children}) {
     </>
   );
 }
+
+//  ESTE WRAPER MODIFICA EL RENDERIZADO DEL RECOMMENDEDCHANNELS Y EL PERFIL DEL USUARIO  D
+export function SanstreamLyoutPerfil({children}) {
+
+  const [context, setContext] = useState(false); // Estado compartido
+
+  return (
+    <>
+     <initialContext.Provider value = {{context, setContext}}>
+      {children}
+     </initialContext.Provider>
+    </>
+  );
+}
 export function useInitialContext(){
   return useContext(initialContext)
 }
