@@ -63,7 +63,7 @@ export function PerfilUser({ user }) {
   }, [user]);
   return (
     <div
-      className={` px-4 ml-20 flex flex-col h-full w-auto gap-y-4  ${
+      className={` px-4 ml-20 flex flex-col h-full w-auto gap-y-4   ${
         isActive ? "ml-64" : "ml-20"
       }`}
     >
@@ -73,7 +73,7 @@ export function PerfilUser({ user }) {
             className=" border-t-2 border-rose  flex justify-center mx-auto h-[500px] w-full "
             src={`https://player.twitch.tv/?channel=${user}&parent=localhost`}
           ></iframe>
-          <div className="flex flex-col gap-y-2 mx-2 ">
+          <div className="flex flex-col gap-y-2 mx-2  ">
             <div className="flex items-center gap-x-2  border-[2px] border-black shadow-sm shadow-white/10  rounded-md p-2">
               <img
                 src={`${streamLive.profile_image_url || user}`}
@@ -104,7 +104,7 @@ export function PerfilUser({ user }) {
                 videos.map((video) => (
                   <div
                     key={video.id}
-                    className="p-1 bg-secundary  bg-zinc-600/10 flex flex-col w-auto h-auto border-2 border-[#232323]  rounded-md shadow-sm shadow-white/10 m-1 max-w-[550px] max-h-[400px] hover:translate-x-3 hover:-translate-y-3 hover:bg-rose hover:backdrop-blur-xl backdrop-blur transition-all duration-150 "
+                    className="p-1 bg-secundary  bg-zinc-600/10 flex flex-col w-auto h-auto border-2 border-[#232323]  rounded-md shadow-sm shadow-white/10 m-1 max-w-[550px] max-h-[400px] hover:translate-x-2 hover:-translate-y-2  hover:bg-rose hover:backdrop-blur-xl   transition-all duration-150 "
                   >
                     <a
                       className="relative"
