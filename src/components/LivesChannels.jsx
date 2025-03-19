@@ -54,7 +54,7 @@ export function LivesChannels() {
         >
           {streamer.map((stream) => (
             <div
-              className="flex flex-col w-auto h-auto border-[2px] border-black shadow-sm shadow-white/10 rounded-sm m-1 max-w-[350px] max-h-[400px]"
+              className=" p-1 bg-secundary  bg-zinc-600/10 flex flex-col w-auto h-auto border-2 border-[#232323]  rounded-md shadow-sm shadow-white/10 m-1 max-w-[350px] max-h-[400px]"
               key={stream.title}
             >
               <a href={`/perfiles/${stream.user_name}`}>

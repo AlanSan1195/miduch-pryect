@@ -62,7 +62,11 @@ export function PerfilUser({ user }) {
     streamLive();
   }, [user]);
   return (
-    <div className={`ml-20 flex flex-col h-full w-auto gap-y-4  ${isActive ? "ml-64" : "ml-20"}`}>
+    <div
+      className={` px-4 ml-20 flex flex-col h-full w-auto gap-y-4  ${
+        isActive ? "ml-64" : "ml-20"
+      }`}
+    >
       {streamLive ? (
         <>
           <iframe
@@ -100,7 +104,7 @@ export function PerfilUser({ user }) {
                 videos.map((video) => (
                   <div
                     key={video.id}
-                    className="  border-[2px] border-black shadow-sm p-2 shadow-white/10 rounded-sm"
+                    className="p-1 bg-secundary  bg-zinc-600/10 flex flex-col w-auto h-auto border-2 border-[#232323]  rounded-md shadow-sm shadow-white/10 m-1 max-w-[550px] max-h-[400px] hover:translate-x-3 hover:-translate-y-3 hover:bg-rose hover:backdrop-blur-xl backdrop-blur transition-all duration-150 "
                   >
                     <a
                       className="relative"

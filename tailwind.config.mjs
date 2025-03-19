@@ -4,8 +4,9 @@ export default {
 	theme: {
 		extend: {
 			colors:{
-				'rose': '#F053A4',
-				'primary': '#161616'
+				'rose': '#ec4899',
+				'primary': '#161616',
+				'secunday': '#1C1C1C'
 			}
 		},
 	},
