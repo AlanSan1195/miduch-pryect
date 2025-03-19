@@ -1,15 +1,10 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { Header } from "../components/Header.jsx";
-import { SanstreamLyout } from "../components/SanstreamLyout";
-import { RecommendedChannels } from "../components/RecommendedChannels";
-import { LivesChannels } from "../components/LivesChannels";
-import {AppWraper} from "../components/AppWraper"
+import { AppWraper } from "../components/AppWraper";
 ---
 
-<Header client:visible />
+
 
 <Layout>
-  <AppWraper client:visible/>
-
+  <AppWraper client:visible />
 </Layout>

@@ -1,5 +1,6 @@
 ---
 // import background from "../assets/background.svg";
+import { Header } from "../components/Header";
 ---
 
 <!doctype html>
@@ -12,6 +13,7 @@
     <title>StramSan</title>
   </head>
   <body>
+    <Header client:visible />
     <!-- <img id="background" src={background.src} alt="" fetchpriority="high" /> -->
     <slot />
   </body>

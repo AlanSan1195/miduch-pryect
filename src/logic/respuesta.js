@@ -13,13 +13,18 @@ export async function awaitStream() {
     let idUser = info.data[0].user_id;
     console.log("idUser", idUser);
 
-    return info.data || [];
+    const infoStream = info.data
+
+    console.log(infoStream);
+    return infoStream || [];
   } catch (error) {
     console.log("error");
 
     return [];
   }
 }
+
+
 
 export async function awaitYourFollows() {
   const headers = {
@@ -75,4 +80,4 @@ export async function awaitYourFollows() {
 
 
 
-// este respuesta solo obtiene la respuesta de info incompleta haz un return de la fullData
+// perfiles
