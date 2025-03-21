@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 //Variables de entorno
-import { awaitStream } from "../logic/respuesta";
+import { awaitStream, awaitYourFollows } from "../logic/respuesta";
 import { Showmore } from "./Showmore";
 import { useInitialContext } from "./SanstreamLyout";
 
@@ -104,11 +104,12 @@ export function OthersChannels() {
   const [streamer, setStreamer] = useState([]);
 
   useEffect(() => {
-    async function awaitYourFollows() {
-      const data = await awaitStream();
+    async function getOtherChannels() {
+      const data = await awaitYourFollows();
+      console.log(data);
       setStreamer(data);
     }
-    awaitYourFollows();
+    getOtherChannels();
   }, []);
   function show() {
     setShowMore(!showMore);
@@ -130,8 +131,8 @@ export function OthersChannels() {
         }`}
       >
         <div className="flex mx-3 mt-2 ">
-          <p className="font-semibold text-xl opacity-85 ">
-            The best of the <span className=" text-cyan-500">Gaming</span>
+          <p className="font-semibold text-xl opacity-80 ">
+          <span className=" text-cyan-500">Gaming</span> and <span className=" text-cyan-500">Development</span> 
           </p>
         </div>
 
@@ -150,7 +151,7 @@ export function OthersChannels() {
               <a href={`/perfiles/${stream.user_name}`}>
                 <img
                   className="w-full h-auto bg-cover cursor-pointer "
-                  src={stream.thumbnail_url.replace(
+                  src={stream.offline_image_url.replace(
                     "{width}x{height}",
                     "250x150"
                   )}
@@ -158,7 +159,7 @@ export function OthersChannels() {
                 />
                 <div className="flex items-center mx-3 ">
                   <img
-                    src={`https://unavatar.io/${stream.user_name}`}
+                    src={`${stream.profile_image_url}`}
                     className=" rounded-full size-12 mt-2 mr-2"
                     alt="imagen"
                   />
@@ -167,11 +168,26 @@ export function OthersChannels() {
                       {stream.title}
                     </p>
                     <p className=" font-light opacity-70 text-xs cursor-pointer ">
-                      {stream.user_name}
+                      {stream.display_name}
                     </p>
                   </div>
                 </div>
               </a>
+              <div className="grid mt-3 gap-y-2 gap-x-2  mx-3 overflow-x-hidden overflow-y-hidden  grid-cols-3 ">
+                {/* // corte la lista a los primeros 3 para que no desvorde el grid */}
+                {stream.tags?.slice(0,3).map((tag, index) => (
+                  <div
+                    key={index}
+                    className=" flex justify-center   bg-primary w-auto h-auto    text-white  rounded-xl px-2 py-1"
+                  >
+                    <p className=" text-xs">
+
+                    {tag}
+                    </p>
+                  </div>
+                ))}
+              </div>
+
               <div className=" flex flex-col mt-1 gap-y-1 mx-3 ">
                 <p className=" font-semibold opacity-80">{stream.game_name}</p>
                 <p className=" font-light opacity-70">{stream.type}</p>

@@ -28,7 +28,7 @@ export async function awaitStream() {
   }
 }
 
-
+ 
 
 export async function awaitYourFollows() {
   const headers = {
@@ -36,7 +36,8 @@ export async function awaitYourFollows() {
     Authorization: `Bearer ${TOKEN_API}`,
   };
 
-  const favoriteStreams = ['midudev', 'illojuan', 'ManzDev', 'alanpr0o', 'elxokas', 'ibai', 'Theo', 'TheGrefg'];
+  const favoriteStreams = [, 'GoncyPozzo',
+ 'illojuan', 'ManzDev', 'elxokas', 'ibai', 'Theo', 'TheGrefg', 'Rubius', 'NateGentile7', 'Midudev', 'Carlosgamedeveloper', 'MoureDev'];
 
   // Crear el query string para los nombres de los usuarios
   const loginQuery = favoriteStreams.map(user => `login=${user}`).join('&');

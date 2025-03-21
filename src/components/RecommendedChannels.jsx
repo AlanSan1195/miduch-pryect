@@ -5,7 +5,7 @@ import { TooltipColapsar, TooltipExpandir } from "./Tooltip";
 import { useInitialContext } from "./SanstreamLyout";
 
 export function RecommendedChannels() {
-  const {context: isActive, setContext: setIsActive} = useInitialContext();
+  const { context: isActive, setContext: setIsActive } = useInitialContext();
   const [isShow, setShow] = useState(false);
   const [isShowing, setIsShowing] = useState(false);
   const [streamer, setStreamer] = useState([]);
@@ -25,7 +25,6 @@ export function RecommendedChannels() {
 
   function hidden() {
     setIsActive(!isActive);
-
   }
 
   function showMore() {
@@ -34,9 +33,12 @@ export function RecommendedChannels() {
   }
 
   return (
+   
     <div
       id="recomended"
-      className={`  bg-primary fixed border-r-[2px] border-black shadow-sm shadow-white/10 h-screen text-xs flex flex-col  ${isActive  ? "w-60":"w-20"}`}
+      className={`  bg-primary fixed border-r-[2px] border-black shadow-sm shadow-white/10 h-screen text-xs flex flex-col   ${
+        isActive ? "w-60" : "w-20"
+      } `}
     >
       {/* //RECOMEND CHANNELS */}
       <div
@@ -76,15 +78,14 @@ export function RecommendedChannels() {
             <path d="M18 6l-6 6l6 6"></path>
           </svg>
           <div className=" overflow-visible absolute z-50">
-
-          {isActive ? <TooltipColapsar /> : <TooltipExpandir />}
+            {isActive ? <TooltipColapsar /> : <TooltipExpandir />}
           </div>
         </div>
       </div>
 
       <div
-        className={`  overflow-y-auto ${isActive ? " " : " mt-16  "} ${
-          isShow ? "  h-[480px] " : " h-48 overflow-y-hidden"
+        className={`  overflow-auto  ${isActive ? " " : " mt-16  "} ${
+          isShow ? "  h-[480px]  " : " h-[192px] overflow-y-hidden"
         }`} // Altura dinámica basada en isActive
       >
         {streamer.map((stream) => (
@@ -129,43 +130,41 @@ export function RecommendedChannels() {
         isShow={isShow}
       />
 
-
-        {yourFollows.map((follow) => (
-          <div
-            key={follow.id}
-            className="flex p-1 cursor-pointer hover:bg-white/10 rounded-md justify-center"
+      {yourFollows.map((follow) => (
+        <div
+          key={follow.id}
+          className="flex p-1 cursor-pointer hover:bg-white/10 rounded-md justify-center"
+        >
+          <a
+            href={`/perfiles/${follow.broadcaster_login}`}
+            className="flex items-center"
           >
-            <a
-              href={`/perfiles/${follow.broadcaster_login}`}
-              className="flex items-center"
+            <img
+              className="size-10 rounded-full"
+              src={`${follow.profile_image_url}`}
+              alt={follow.broadcaster_login}
+            />
+            <div
+              className={`${
+                isActive
+                  ? "ml-1 w-40 flex justify-between items-center"
+                  : "hidden"
+              }`}
             >
-              <img
-                className="size-10 rounded-full"
-                src={`https://unavatar.io/${follow.broadcaster_name}`}
-                alt={follow.broadcaster_login}
-              />
-              <div
-                className={`${
-                  isActive
-                    ? "ml-1 w-40 flex justify-between items-center"
-                    : "hidden"
-                }`}
-              >
-                <div className="flex items-center text-pretty">
-                  <div className="flex-col">
-                    <h2 className="font-bold opacity-80">
-                      {follow.broadcaster_login}
-                    </h2>
-                    <p className="font-light opacity-70 text-pretty">
-                      {follow.game_name}
-                    </p>
-                  </div>
+              <div className="flex items-center text-pretty">
+                <div className="flex-col">
+                  <h2 className="font-bold opacity-80">
+                    {follow.broadcaster_login}
+                  </h2>
+                  <p className="font-light opacity-70 text-pretty">
+                    {follow.game_name}
+                  </p>
                 </div>
               </div>
-            </a>
-          </div>
-        ))}
-      </div>
-
+            </div>
+          </a>
+        </div>
+      ))}
+    </div>
   );
 }
