@@ -10,7 +10,9 @@ export async function awaitStream() {
       headers,
     });
     const info = await respuesta.json();
-    let idUser = info.data[0].user_id;
+    // cambie la forma de tener un ide en aleatorio
+    let idUser = info.data[Math.floor(Math.random() * info.data.length)].user_id;
+
     console.log("idUser", idUser);
 
     const infoStream = info.data
