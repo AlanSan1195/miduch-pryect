@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { awaitStream } from "../logic/respuesta";
 import { Showmore } from "./Showmore";
 import { useInitialContext } from "./SanstreamLyout";
+import "../css/hover.css";
 
 export function LivesChannels() {
   const { context: isActive, setContext: setIsActive } = useInitialContext();
@@ -54,12 +55,12 @@ export function LivesChannels() {
         >
           {streamer.map((stream) => (
             <div
-              className=" p-1 bg-secundary  bg-zinc-600/10 flex flex-col w-auto h-auto border-2 border-[#232323]  rounded-md shadow-sm shadow-white/10 m-1 max-w-[350px] max-h-[400px]"
+              className=" p-1 bg-secundary  bg-zinc-600/10 flex flex-col w-auto h-auto border-2 border-[#232323]  rounded-md shadow-sm shadow-white/10 m-1 max-w-[350px] max-h-[400px] hover:translate-x-2 hover:-translate-y-2  hover:bg-rose  hover:border-[1px]  transition-all duration-150"
               key={stream.title}
             >
               <a href={`/perfiles/${stream.user_name}`}>
                 <img
-                  className="w-full h-auto bg-cover cursor-pointer  "
+                  className="w-full h-auto bg-cover cursor-pointer "
                   src={stream.thumbnail_url.replace(
                     "{width}x{height}",
                     "250x150"
