@@ -36,7 +36,7 @@ export function RecommendedChannels() {
    
     <div
       id="recomended"
-      className={`  bg-primary fixed border-r-[2px] border-black shadow-sm shadow-white/10 h-screen text-xs flex flex-col   ${
+      className={` h-full bg-primary fixed  border-r-[2px] border-black shadow-sm shadow-white/10  text-xs flex flex-col   ${
         isActive ? "w-60" : "w-20"
       } `}
     >
@@ -85,7 +85,7 @@ export function RecommendedChannels() {
 
       <div
         className={`  overflow-auto  ${isActive ? " " : " mt-16  "} ${
-          isShow ? "  h-[480px]  " : " h-[192px] overflow-y-hidden"
+          isShow ? "  h-[290px]  " : " h-[192px] overflow-y-hidden"
         }`} // Altura dinámica basada en isActive
       >
         {streamer.map((stream) => (
@@ -129,42 +129,46 @@ export function RecommendedChannels() {
         isActive={isActive}
         isShow={isShow}
       />
-
+      <div className={` overflow-y-auto ${isShow ? "h-[365px]" : "h-[365px]"} `}>
       {yourFollows.map((follow) => (
-        <div
-          key={follow.id}
-          className="flex p-1 cursor-pointer hover:bg-white/10 rounded-md justify-center"
-        >
-          <a
-            href={`/perfiles/${follow.broadcaster_login}`}
-            className="flex items-center"
+          <div
+            key={follow.id}
+            className="flex p-1 cursor-pointer hover:bg-white/10 rounded-md justify-center"
           >
-            <img
-              className="size-10 rounded-full"
-              src={`${follow.profile_image_url}`}
-              alt={follow.broadcaster_login}
-            />
-            <div
-              className={`${
-                isActive
-                  ? "ml-1 w-40 flex justify-between items-center"
-                  : "hidden"
-              }`}
+            <a
+              href={`/perfiles/${follow.broadcaster_login}`}
+              className="flex items-center"
             >
-              <div className="flex items-center text-pretty">
-                <div className="flex-col">
-                  <h2 className="font-bold opacity-80">
-                    {follow.broadcaster_login}
-                  </h2>
-                  <p className="font-light opacity-70 text-pretty">
-                    {follow.game_name}
-                  </p>
+              <img
+                className="size-10 rounded-full"
+                src={`${follow.profile_image_url}`}
+                alt={follow.broadcaster_login}
+              />
+              <div
+                className={`${
+                  isActive
+                    ? "ml-1 w-40 flex justify-between items-center"
+                    : "hidden"
+                }`}
+              >
+                <div className="flex items-center text-pretty">
+                  <div className="flex-col">
+                    <h2 className="font-bold opacity-80">
+                      {follow.broadcaster_login}
+                    </h2>
+                    <p className="font-light opacity-70 text-pretty">
+                      {follow.game_name}
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
-          </a>
-        </div>
-      ))}
+            </a>
+          </div>
+
+        ))}
+      </div>
+     
+    
     </div>
   );
 }

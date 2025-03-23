@@ -17,7 +17,7 @@ export function Showmore({ showMore, isShow }) {
 }
 export function ShowmoreWhitActive({ showMore, isActive, isShow }) {
   return (
-    <div className="  flex justify-center items-center ">
+    <div className="  flex justify-center items-center my-2 ">
       <hr className=" mx-2 flex-1 border-t-1 border-zinc-800 " />
       <button onClick={showMore}>
         {!isActive ? (
