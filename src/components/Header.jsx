@@ -23,14 +23,14 @@ export function Header() {
   };
 
   return (
-    <header className=" fixed top-0 left-0 z-10  w-full  shadow-black/40 flex justify-between bg-primary shadow-xl px-3 py-4 ">
-      <a href="/" className="flex items-center gap-x-1 hover:cursor-pointer">
-        <div className="h-4 w-4 bg-rose rounded-sm opacity-80"></div>
-        <h1  className=" hover:cursor-pointer font-semibold text-lg">Suitch</h1>
+    <header className=" fixed top-0 left-0 z-10  w-full  shadow-black/40 flex justify-between bg-primary shadow-xl px-7 py-4 ">
+      <a href="/" className="flex items-center gap-x-2 hover:cursor-pointer ">
+        <div className="h-5 w-5 bg-rose rounded-md  opacity-80"></div>
+        <h1  className=" hover:cursor-pointer font-bold text-xl">Suitch</h1>
       </a>
 
       <div >
-        <form className="flex" action="" onSubmit={handleSubmit}>
+        <form className="flex gap-x-2" action="" onSubmit={handleSubmit}>
           <input
             onChange={handleChange}
             className="border-2 opacity-80 border-rose text-black"
@@ -39,20 +39,20 @@ export function Header() {
           />
           <button
             type="submit"
-            className="bg-zinc-700 shadow-md rounded-sm px-2 opacity-80 hidden md:flex "
+            className="bg-zinc-700 shadow-md rounded-md px-2 text-sm font-semibold  items-center hover:scale-105  opacity-80 hidden md:flex "
           >
             Search
           </button>
         </form>
 
-        {error && <p className="text-rose font-light">{error}</p>}
+        {error && <p className="text-rose font-light " >{error}</p>}
       </div>
 
       <div className="flex gap-x-2 items-center justify-center">
-        <button className="bg-zinc-700 rounded-md p-1 text-xs text-white">
+        <button className="bg-zinc-700 rounded-md p-1 text-sm font-semibold text-white">
           Log in
         </button>
-        <button className="bg-rose rounded-md p-1 text-xs text-white">
+        <button className="bg-rose rounded-md p-1 text-sm font-semibold text-white">
           Sign Up
         </button>
       </div>

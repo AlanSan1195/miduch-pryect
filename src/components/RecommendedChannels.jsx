@@ -36,7 +36,7 @@ export function RecommendedChannels() {
    
     <div
       id="recomended"
-      className={`  h-screen bg-primary fixed inset-0  top-16  border-r-[2px] border-black shadow-sm shadow-white/10  text-xs flex flex-col   ${
+      className={`  h-screen bg-primary fixed inset-0  top-20 border-r-[2px] border-black shadow-sm shadow-white/10  text-xs flex flex-col   ${
         isActive ? "w-60" : "w-20"
       } `}
     >
