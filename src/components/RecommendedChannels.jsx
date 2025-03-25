@@ -36,12 +36,12 @@ export function RecommendedChannels() {
    
     <div
       id="recomended"
-      className={` h-full bg-primary fixed  border-r-[2px] border-black shadow-sm shadow-white/10  text-xs flex flex-col   ${
+      className={`  h-screen bg-primary fixed inset-0  top-16  border-r-[2px] border-black shadow-sm shadow-white/10  text-xs flex flex-col   ${
         isActive ? "w-60" : "w-20"
       } `}
     >
       {/* //RECOMEND CHANNELS */}
-      <div
+      <div id="svg"
         className={` mt-2 mb-2  ${
           isActive ? "flex ml-3" : "flex justify-between items-center absolute"
         }`}
@@ -83,9 +83,9 @@ export function RecommendedChannels() {
         </div>
       </div>
 
-      <div
-        className={`  overflow-auto  ${isActive ? " " : " mt-16  "} ${
-          isShow ? "  h-[290px]  " : " h-[192px] overflow-y-hidden"
+      <div id="channels-recommended"
+        className={` flex-col   ${isActive ? " " : " mt-16  "} ${
+          isShow ? "  h-[635px] overflow-y-scroll  " : " h-[310px] overflow-hidden "
         }`} // Altura dinámica basada en isActive
       >
         {streamer.map((stream) => (
@@ -129,7 +129,7 @@ export function RecommendedChannels() {
         isActive={isActive}
         isShow={isShow}
       />
-      <div className={` overflow-y-auto ${isShow ? "h-[365px]" : "h-[365px]"} `}>
+      <div className={` h-auto      ${isShow ? "h-full overflow-y-scroll  " : "  h-full overflow-hidden "} `}>
       {yourFollows.map((follow) => (
           <div
             key={follow.id}

@@ -37,7 +37,7 @@ export async function awaitYourFollows() {
   };
 
   const favoriteStreams = [, 'GoncyPozzo',
- 'illojuan', 'ManzDev', 'elxokas', 'ibai', 'Theo', 'TheGrefg', 'Rubius', 'NateGentile7', 'Midudev', 'Carlosgamedeveloper', 'MoureDev'];
+ 'illojuan', 'ManzDev', 'ibai', 'Theo',   'NateGentile7', 'Midudev',  'MoureDev'];
 
   // Crear el query string para los nombres de los usuarios
   const loginQuery = favoriteStreams.map(user => `login=${user}`).join('&');
