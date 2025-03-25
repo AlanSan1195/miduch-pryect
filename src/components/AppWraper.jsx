@@ -20,6 +20,8 @@ export function AppWraperPerfil({user}) {
     <SanstreamLyoutPerfil>
         <RecommendedChannels/>
         <PerfilUser user ={user}/>
+        <Footer/>
+
     </SanstreamLyoutPerfil>
   );
 }

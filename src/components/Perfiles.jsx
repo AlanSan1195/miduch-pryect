@@ -145,6 +145,8 @@ export function PerfilUser({ user }) {
               )}
             </div>
           </section>
+          <hr className=" mx-2 flex-1 border-t-1 border-zinc-800 " />
+
         </>
       ) : (
         <p>Buscando al usuario...</p>
