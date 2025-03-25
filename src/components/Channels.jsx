@@ -29,7 +29,7 @@ export function LivesChannels() {
         isActive ? " ml-64" : "ml-20"
       }`}
     >
-      {/* esto es un componente  */}
+
 
       <section
         className={` overflow-y-hidden flex flex-col  ${
@@ -70,7 +70,7 @@ export function LivesChannels() {
                   <img
                     src={`https://unavatar.io/${stream.user_name}`}
                     className=" rounded-full size-12 mt-2 mr-2"
-                    alt="imagen"
+                    alt="imagen del perfil"
                   />
                   <div className="flex flex-col overflow-x-hidden">
                     <p className="font-xs font-bold whitespace-nowrap overflow-hidden text-ellipsis  ">
@@ -106,7 +106,6 @@ export function OthersChannels() {
   useEffect(() => {
     async function getOtherChannels() {
       const data = await awaitYourFollows();
-      console.log(data);
       setStreamer(data);
     }
     getOtherChannels();
@@ -155,13 +154,13 @@ export function OthersChannels() {
                     "{width}x{height}",
                     "250x150"
                   )}
-                  alt="imagen"
+                  alt="imagen del contenido"
                 />
                 <div className="flex items-center mx-3 ">
                   <img
                     src={`${stream.profile_image_url}`}
                     className=" rounded-full size-12 mt-2 mr-2"
-                    alt="imagen"
+                    alt="imagen del perfil"
                   />
                   <div className="flex flex-col overflow-x-hidden">
                     <p className="font-xs font-bold whitespace-nowrap overflow-hidden text-ellipsis  ">

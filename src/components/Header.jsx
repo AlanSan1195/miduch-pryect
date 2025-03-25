@@ -26,7 +26,7 @@ export function Header() {
     <header className=" fixed top-0 left-0 z-10  w-full  shadow-black/40 flex justify-between bg-primary shadow-xl px-3 py-4 ">
       <a href="/" className="flex items-center gap-x-1 hover:cursor-pointer">
         <div className="h-4 w-4 bg-rose rounded-sm opacity-80"></div>
-        <h1  className=" hover:cursor-pointer font-semibold text-lg">Sanstream</h1>
+        <h1  className=" hover:cursor-pointer font-semibold text-lg">Suitch</h1>
       </a>
 
       <div >

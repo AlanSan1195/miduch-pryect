@@ -13,11 +13,11 @@ export async function awaitStream() {
     // cambie la forma de tener un ide en aleatorio
     let idUser = info.data[Math.floor(Math.random() * info.data.length)].user_id;
 
-    console.log("idUser", idUser);
+
 
     const infoStream = info.data
 
-    console.log(infoStream);
+
     return infoStream || [];
 
     
@@ -74,7 +74,7 @@ export async function awaitYourFollows() {
       };
     });
 
-    console.log(fullData);
+
 
     return fullData;
   } catch (error) {
