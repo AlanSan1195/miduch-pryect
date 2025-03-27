@@ -11,10 +11,8 @@ export function Header() {
   // Evita que el formulario recargue la página
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log("Buscando:", search);
-    const urlStreamer =
+    if (!search) return;
     window.location.href = `/perfiles/${search}`;
-    console.log(urlStreamer);
   };
 
   // Actualiza el estado con el valor del input
