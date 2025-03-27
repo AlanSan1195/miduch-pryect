@@ -20,11 +20,17 @@ export function PerfilUser({ user }) {
         Authorization: `Bearer ${TOKEN_API}`,
       };
 
+      if (!CLIENT_ID || !TOKEN_API) {
+        console.error(
+          "CLIENT_ID o TOKEN_API no están configurados correctamente."
+        );
+      }
+
       const responseUser = await fetch(
         `https://api.twitch.tv/helix/users?login=${user}`,
         { headers }
       );
-    
+
       if (!responseUser.ok) {
         return null;
       }
@@ -151,7 +157,6 @@ export function PerfilUser({ user }) {
             </div>
           </section>
           <hr className=" mx-2 flex-1 border-t-1 border-zinc-800 " />
-
         </>
       ) : (
         <p>Buscando al usuario...</p>
