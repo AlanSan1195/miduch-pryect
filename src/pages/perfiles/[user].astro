@@ -6,6 +6,9 @@ import { RecommendedChannels } from "../../components/RecommendedChannels";
 import { AppWraperPerfil } from "../../components/AppWraper";
 export const prerender = false;
 const { user } = Astro.params;
+if (!user) {
+  return redirect("/"); // Redirige a la página principal u otra página válida
+}
 ---
 
 <!-- <Layout>

@@ -8,6 +8,11 @@ export function PerfilUser({ user }) {
 
   const [videos, setVideos] = useState([]);
   useEffect(() => {
+    if (!user) {
+      console.error("User is undefined");
+      return;
+    }
+
     const streamLive = async () => {
       //headers
       const headers = {
@@ -19,7 +24,7 @@ export function PerfilUser({ user }) {
         `https://api.twitch.tv/helix/users?login=${user}`,
         { headers }
       );
-
+    
       if (!responseUser.ok) {
         return null;
       }
@@ -71,7 +76,7 @@ export function PerfilUser({ user }) {
         <>
           <iframe
             className=" border-t-2 border-rose  flex justify-center mx-auto h-[500px] w-full "
-            src={`https://player.twitch.tv/?channel=${user}&parent=localhost`}
+            src={`https://player.twitch.tv/?channel=${user}&parent=${window.location.hostname}`}
           ></iframe>
           <div className="flex flex-col gap-y-2 mx-2  ">
             <div className="flex items-center gap-x-2  border-[2px] border-black shadow-sm shadow-white/10  rounded-md p-2">
