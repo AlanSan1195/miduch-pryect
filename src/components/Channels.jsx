@@ -147,31 +147,32 @@ export function OthersChannels() {
                 className=" p-1 bg-secundary  bg-zinc-600/10 flex flex-col w-auto h-auto border-2 border-[#232323]  rounded-md shadow-sm shadow-white/10 m-1 max-w-[350px] max-h-[400px] hover:translate-x-2 hover:-translate-y-2  hover:bg-rose  hover:border-[1px]  transition-all duration-150"
                 key={stream.title}
               >
-                <a href={`/perfiles/${stream.user_name}`}>
+                <a href={`/perfiles/${stream.login || stream.display_name}`}>
                   <img
                     className="w-full h-auto bg-cover cursor-pointer "
                     src={
-                      stream.thumbnail_url
-                        ? stream.thumbnail_url.replace(
-                            "{width}x{height}",
-                            "250x150"
-                          )
-                        : "error-404-not.webp"
+                      stream.offline_image_url
+                        ? stream.offline_image_url.replace("{width}x{height}", "250x150")
+                        : stream.thumbnail_url
                     }
-                    alt="imagen del contenido"
+                    alt={`Imagen de ${stream.display_name || stream.login}`}
                   />
                   <div className="flex items-center mx-3 ">
                     <img
-                      src={`${stream.profile_image_url}`}
-                      className=" rounded-full size-12 mt-2 mr-2"
-                      alt="imagen del perfil"
+                      src={
+                        stream.profile_image_url
+                          ? stream.profile_image_url
+                          : `https://unavatar.io/${stream.login || stream.display_name}`
+                      }
+                      className="rounded-full size-12 mt-2 mr-2"
+                      alt={`Perfil de ${stream.display_name || stream.login}`}
                     />
                     <div className="flex flex-col overflow-x-hidden">
-                      <p className="font-xs font-bold whitespace-nowrap overflow-hidden text-ellipsis  ">
-                        {stream.title}
+                      <p className="font-xs font-bold whitespace-nowrap overflow-hidden text-ellipsis">
+                        {stream.title || "Sin título"}
                       </p>
-                      <p className=" font-light opacity-70 text-xs cursor-pointer ">
-                        {stream.display_name}
+                      <p className="font-light opacity-70 text-xs cursor-pointer">
+                        {stream.display_name || stream.login}
                       </p>
                     </div>
                   </div>
@@ -188,11 +189,11 @@ export function OthersChannels() {
                   ))}
                 </div>
 
-                <div className=" flex flex-col mt-1 gap-y-1 mx-3 ">
-                  <p className=" font-semibold opacity-80">
-                    {stream.game_name}
+                <div className="flex flex-col mt-1 gap-y-2 mx-3">
+                  <p className="font-semibold opacity-80 mt-2">
+                    {stream.game_name || "Sin juego"}
                   </p>
-                  <p className=" font-light opacity-70">{stream.type}</p>
+
                 </div>
                 <div className="  grid grid-cols-6 md:grid-cols-6 my-3 gap-y-2 "></div>
               </div>
