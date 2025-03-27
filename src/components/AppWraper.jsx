@@ -16,12 +16,14 @@ export function AppWraper() {
   );
 }
 export function AppWraperPerfil({user}) {
+  if (!user) {
+    return <p>Error: El usuario no está definido.</p>;
+  }
   return (
     <SanstreamLyoutPerfil>
         <RecommendedChannels/>
         <PerfilUser user ={user}/>
         <Footer/>
-
     </SanstreamLyoutPerfil>
   );
 }
