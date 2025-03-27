@@ -32,7 +32,7 @@ export function PerfilUser({ user }) {
       );
 
       if (!responseUser.ok) {
-        return null;
+        throw new Error(`Error al obtener el usuario: ${responseUser.status}`);
       }
 
       const data = await responseUser.json();
