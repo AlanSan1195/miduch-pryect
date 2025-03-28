@@ -27,7 +27,7 @@ git clone https://github.com/tu-usuario/suitch.git
 2. Instala las dependencias:
 ```bash
 cd suitch
-npm install
+pnpm install
 ```
 
 3. Crea un archivo `.env` en la raíz del proyecto con las siguientes variables:
@@ -40,7 +40,7 @@ PUBLIC_CLIENT_ID=tu_client_id_de_twitch
 
 4. Inicia el servidor de desarrollo:
 ```bash
-npm run dev
+pnpm run dev
 ```
 
 ## 📦 Estructura del Proyecto
@@ -76,14 +76,6 @@ Para que la aplicación funcione correctamente, necesitas configurar las siguien
 - `PUBLIC_TWITCH_TOKEN`
 - `PUBLIC_URL_TWITCH_SEARCH`
 - `PUBLIC_CLIENT_ID`
-
-## 🌐 Despliegue
-
-La aplicación está optimizada para ser desplegada en Netlify. Para desplegar:
-
-1. Conecta tu repositorio con Netlify
-2. Configura las variables de entorno en la configuración del proyecto
-3. Deploy automático con cada push a la rama principal
 
 ## 🤝 Contribuciones
 
