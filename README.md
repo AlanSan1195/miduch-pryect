@@ -1,6 +1,10 @@
 # 🎮 Suitch 👾 - Plataforma de Streaming
 
-Suitch es una aplicación web moderna que permite explorar y seguir streams de Twitch de manera intuitiva y elegante. Diseñada para fans de gaming y desarrollo, ofrece una experiencia personalizada para descubrir nuevos streamers y seguir a tus favoritos.
+📹 Suitch fue un excelente proyecto de práctica con el objetivo de simular la plataforma de Twitch 🎮, mediante la creación de componentes y la implementación de responsividad. Hasta ahora, el proyecto te permite buscar a cualquier streamer y ver su contenido.
+
+La UI está inspirada en una web de Edu Calvo ✨![](https://www.smoothui.dev/). Aún falta mejorar el responsive, algo en lo que trabajaré para adaptarlo mejor a pantallas más pequeñas, y por supuesto, agregar inicio de sesión con Twitch.
+
+En verdad, hace un año no me imaginaba cómo hacer esto, y estoy disfrutando mucho el desarrollo de esta simulación de Twitch 🚀.
 ![Vista de Perfil](public/preview/suitch-proyect-md.webp)
 
 
