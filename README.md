@@ -1,48 +1,134 @@
-# Astro Starter Kit: Basics
+# 🎮 Suitch - Plataforma de Streaming de Twitch
 
-```sh
-npm create astro@latest -- --template basics
+Suitch es una aplicación web moderna que permite explorar y seguir streams de Twitch de manera intuitiva y elegante. Diseñada para fans de gaming y desarrollo, ofrece una experiencia personalizada para descubrir nuevos streamers y seguir a tus favoritos.
+
+## 🌟 Características
+
+- 🎯 Interfaz moderna y responsive
+- 🔍 Búsqueda de streamers y categorías
+- 📱 Diseño adaptable a diferentes dispositivos
+- 🎨 Tema oscuro por defecto
+- 🔄 Actualización en tiempo real de streams
+- 👥 Perfiles de streamers detallados
+- 📊 Estadísticas de streams y espectadores
+- 🏷️ Sistema de etiquetas para categorización
+
+## 🖼️ Vista Previa
+
+![Vista Principal](public/preview/proyect-suitch-md-1.webp)
+![Vista de Perfil](public/preview/proyect-suitch-md.webp)
+
+
+## 🛠️ Tecnologías Utilizadas
+
+- React.js
+- Vite
+- Tailwind CSS
+- Twitch API
+- React Router
+
+## 🚀 Instalación
+
+1. Clona el repositorio:
+```bash
+git clone https://github.com/tu-usuario/suitch.git
 ```
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+2. Instala las dependencias:
+```bash
+cd suitch
+npm install
+```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+3. Crea un archivo `.env` en la raíz del proyecto con las siguientes variables:
+```env
+PUBLIC_URL_TWITCH=https://api.twitch.tv/helix/streams
+PUBLIC_TWITCH_TOKEN=tu_token_de_twitch
+PUBLIC_URL_TWITCH_SEARCH=https://api.twitch.tv/helix/users
+PUBLIC_CLIENT_ID=tu_client_id_de_twitch
+```
 
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
+4. Inicia el servidor de desarrollo:
+```bash
+npm run dev
+```
 
-## 🚀 Project Structure
+## 📦 Estructura del Proyecto
 
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-│   └── favicon.svg
+```
+suitch/
 ├── src/
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
+│   ├── components/
+│   │   ├── Header.jsx
+│   │   ├── Footer.jsx
+│   │   ├── Channels.jsx
+│   │   ├── Perfiles.jsx
+│   │   └── ...
+│   ├── hooks/
+│   │   ├── useStream.jsx
+│   │   └── useSearch.jsx
+│   ├── logic/
+│   │   └── respuesta.js
+│   ├── services/
+│   │   └── apiTwitch.js
+│   └── App.jsx
+├── public/
+│   └── preview/
+├── .env
 └── package.json
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+## 🔑 Configuración de Variables de Entorno
 
-## 🧞 Commands
+Para que la aplicación funcione correctamente, necesitas configurar las siguientes variables de entorno en tu plataforma de despliegue (por ejemplo, Netlify):
 
-All commands are run from the root of the project, from a terminal:
+- `PUBLIC_URL_TWITCH`
+- `PUBLIC_TWITCH_TOKEN`
+- `PUBLIC_URL_TWITCH_SEARCH`
+- `PUBLIC_CLIENT_ID`
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+## 🌐 Despliegue
 
-## 👀 Want to learn more?
+La aplicación está optimizada para ser desplegada en Netlify. Para desplegar:
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+1. Conecta tu repositorio con Netlify
+2. Configura las variables de entorno en la configuración del proyecto
+3. Deploy automático con cada push a la rama principal
+
+## 🤝 Contribuciones
+
+Las contribuciones son bienvenidas. Por favor, asegúrate de:
+
+1. Fork el repositorio
+2. Crear una rama para tu feature (`git checkout -b feature/AmazingFeature`)
+3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
+4. Push a la rama (`git push origin feature/AmazingFeature`)
+5. Abrir un Pull Request
+
+## 📝 Licencia
+
+Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE.md](LICENSE.md) para más detalles.
+
+## 👤 Autor
+
+Tu Nombre - [@alanpro._](https://www.linkedin.com/in/devsan11/)
+
+## 🙏 Agradecimientos
+- [Midudev](https://midu.dev/) 💜
+
+## 📚 Cosas a las que me enfrente y aprendi 
+
+- Aprender a usar la twitch api
+ * usar las cabeceraz en las apis
+ * obtener el token de twitch
+
+- usarCreateContecxt() en React
+  * es crear un componenete con contexto en ele estado para que este componenete envuelba los {children} los componenetes que envolvasmo con este componente Padre, muy interesante la forma de compartir interactividad con el estado de un componente a otro. 
+  Uso: por ejemplo al colapsar o expanir la Barra lateral izquierda de Recommended Channels reacciona los demas componenets de aceurdo a ese estado. 
+
+  - Astro pages (Dinamicas)    
+    * Las utilizamos para crear el perfil dinamico de cada streamer buscado o seleccionado.
+    descubrimos que para usar esto dever darle a astro toda la informacion previe de las paginas que vas a renderizar de forma dinamica, esto esta vien si no hay muchos elementos. de echo este fue uno mis
+     ## mayores retos
+     - para logralo:
+      twitch limita la info obtenida con cada curl que hagas y para obtener el perfil de cada streamer se debe hacer una peticion por cada streamer para obtener su ID y con su ID hacer una peticion nueva con otra url diferente mas la id y asi obtener el perfil completo de cada streamer para su informacion.
