@@ -1,6 +1,7 @@
 ---
 // import background from "../assets/background.svg";
-import { Header } from "../components/Header";
+ import { Input } from "../components/Input";
+ import  Header  from "../components/Header.astro";
 ---
 
 <!doctype html>
@@ -13,7 +14,7 @@ import { Header } from "../components/Header";
     <title>Suitch</title>
   </head>
   <body>
-    <Header client:visible />
+    <Header />
     <!-- <img id="background" src={background.src} alt="" fetchpriority="high" /> -->
     <slot />
   </body>

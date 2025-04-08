@@ -1,5 +1,5 @@
 import { SanstreamLyout, SanstreamLyoutPerfil } from "./SanstreamLyout";
-import { Header } from "./Header";
+
 import { Footer } from "./Footer";
 import { RecommendedChannels } from "./RecommendedChannels";
 import { LivesChannels, OthersChannels } from "./Channels";
