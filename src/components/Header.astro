@@ -1,0 +1,66 @@
+---
+import { getSession } from "auth-astro/server";
+const session = await getSession(Astro.request);
+import { Input } from "./Input";
+---
+
+<header
+  class="fixed top-0 left-0 z-10 w-full shadow-black/40 flex justify-between bg-primary shadow-xl px-7 py-4"
+>
+  <a href="/" class="flex items-center gap-x-2 hover:cursor-pointer">
+    <div class="bg-rose rounded-md size-5"></div>
+    <h1 class="text-white font-bold text-xl">Suitch</h1>
+  </a>
+  <Input client:visible />
+
+  <div class="flex gap-x-2 items-center justify-center">
+    {
+      session ? (
+        <div class="flex items-center gap-x-2">
+          <img
+            src={session.user?.image}
+            alt={session.user?.name}
+            class="w-8 h-8 rounded-full"
+          />
+          <form action="/api/auth/signout" method="post">
+            <button
+              id="logout"
+              type="submit"
+              class="bg-rose rounded-md p-1 text-sm font-semibold text-white hover:bg-rose/80 transition-colors"
+            >
+              Logout
+            </button>
+          </form>
+        </div>
+      ) : (
+        <form action="/api/auth/signin" method="post">
+          <input type="hidden" name="provider" value="twitch" />
+          <button
+            id="login"
+            type="submit"
+            class="bg-zinc-700 rounded-md p-1 text-sm font-semibold text-white hover:bg-zinc-600 transition-colors"
+          >
+            Login with Twitch
+          </button>
+        </form>
+      )
+    }
+  </div>
+</header>
+
+<script>
+  const { signIn, signOut } = await import("auth-astro/client");
+  const loginButton = document.getElementById("login");
+  const logoutButton = document.getElementById("logout");
+  if (loginButton) {
+    loginButton.addEventListener("click", async () => {
+      console.log("Login clicked");
+      await signIn("twitch");
+    });
+  }
+  if (logoutButton) {
+    logoutButton.addEventListener("click", async () => {
+      await signOut();
+    });
+  }
+</script>
