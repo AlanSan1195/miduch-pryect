@@ -81,7 +81,7 @@ export function PerfilUser({ user }) {
       {streamLive ? (
         <>
           <iframe
-            className=" border-t-2 border-rose  flex justify-center mx-auto h-[500px] w-full "
+            className="  border-t-2 border-rose  flex justify-center mx-auto h-[500px] w-full "
             src={`https://player.twitch.tv/?channel=${user}&parent=${window.location.hostname}`}
           ></iframe>
           <div className="flex flex-col gap-y-2 mx-2  ">

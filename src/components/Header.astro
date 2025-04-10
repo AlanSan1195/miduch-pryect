@@ -2,6 +2,7 @@
 import { getSession } from "auth-astro/server";
 const session = await getSession(Astro.request);
 import { Input } from "./Input";
+import { TooltipLogout } from "./Tooltip";
 ---
 
 <header
@@ -26,9 +27,28 @@ import { Input } from "./Input";
             <button
               id="logout"
               type="submit"
-              class="bg-rose rounded-md p-1 text-sm font-semibold text-white hover:bg-rose/80 transition-colors"
+              class="bg-pink-400 flex rounded-md p-1 text-sm font-semibold text-white hover:bg-rose transition-colors  group"
             >
-              Logout
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="icon icon-tabler icons-tabler-outline icon-tabler-logout"
+              > 
+                <>
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
+                  <path d="M9 12h12l-3 -3" />
+                  <path d="M18 15l3 -3" />
+                </> 
+              </svg>
+              <TooltipLogout />
             </button>
           </form>
         </div>
@@ -38,7 +58,7 @@ import { Input } from "./Input";
           <button
             id="login"
             type="submit"
-            class="bg-zinc-700 rounded-md p-1 text-sm font-semibold text-white hover:bg-zinc-600 transition-colors"
+            class=" rounded-md p-1 text-sm font-semibold text-white  bg-pink-400 transition-colors hover:bg-rose px-2"
           >
             Login with Twitch
           </button>

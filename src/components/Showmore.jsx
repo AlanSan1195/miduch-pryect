@@ -6,9 +6,9 @@ export function Showmore({ showMore, isShow }) {
       <hr className=" mx-2 flex-1 border-t-1 border-zinc-800 " />
       <button onClick={showMore}>
         {isShow ? (
-          <span className=" text-rose">Show less</span>
+          <span className=" text-rose font-semibold">Show less</span>
         ) : (
-          <span className=" text-rose">Show more</span>
+          <span className=" text-rose font-semibold">Show more</span>
         )}
       </button>
       <hr className="mx-2 flex-1 border-t-1 border-zinc-800 " />
@@ -39,9 +39,9 @@ export function ShowmoreWhitActive({ showMore, isActive, isShow }) {
             <TooltipLives />
           </div>
         ) : isShow ? (
-          <span className=" text-rose">Mostrar menos</span>
+          <span className=" text-rose">Show less</span>
         ) : (
-          <span className=" text-rose">Mostrar más</span>
+          <span className=" text-rose font-semibold">Show more</span>
         )}
       </button>
       <hr className="mx-2 flex-1 border-t-1 border-zinc-800 " />
