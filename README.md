@@ -76,15 +76,6 @@ Para que la aplicación funcione correctamente, necesitas configurar las siguien
 - `PUBLIC_URL_TWITCH_SEARCH`
 - `PUBLIC_CLIENT_ID`
 
-## 🤝 Contribuciones
-
-Las contribuciones son bienvenidas. Por favor, asegúrate de:
-
-1. Fork el repositorio
-2. Crear una rama para tu feature (`git checkout -b feature/AmazingFeature`)
-3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
-4. Push a la rama (`git push origin feature/AmazingFeature`)
-5. Abrir un Pull Request
 
 ## 📝 Licencia
 
