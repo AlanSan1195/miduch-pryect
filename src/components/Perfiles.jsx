@@ -1,12 +1,15 @@
 import { CLIENT_ID, TOKEN_API } from "../services/apiTwitch";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useInitialContext } from "./SanstreamLyout";
 
 export function PerfilUser({ user }) {
   const [streamLive, setStreamerLive] = useState(null);
   const { context: isActive, setContext: setIsActive } = useInitialContext();
-
   const [videos, setVideos] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const cacheRef = useRef(new Map()); // Cache para evitar peticiones repetidas
+  const lastFetchRef = useRef(0);
+
   useEffect(() => {
     if (!user) {
       console.error("User is undefined");
@@ -14,76 +17,135 @@ export function PerfilUser({ user }) {
     }
 
     const streamLive = async () => {
-      //headers
-      const headers = {
-        "Client-ID": CLIENT_ID,
-        Authorization: `Bearer ${TOKEN_API}`,
-      };
-
-      if (!CLIENT_ID || !TOKEN_API) {
-        console.error(
-          "CLIENT_ID o TOKEN_API no están configurados correctamente."
-        );
+      // Verificar caché
+      const cacheKey = `user_${user}`;
+      const now = Date.now();
+      const CACHE_DURATION = 5 * 60 * 1000; // 5 minutos
+      
+      if (cacheRef.current.has(cacheKey)) {
+        const cached = cacheRef.current.get(cacheKey);
+        if (now - cached.timestamp < CACHE_DURATION) {
+          setStreamerLive(cached.data);
+          setVideos(cached.videos || []);
+          setLoading(false);
+          return;
+        }
       }
 
-      const responseUser = await fetch(
-        `https://api.twitch.tv/helix/users?login=${user}`,
-        { headers }
-      );
-
-      if (!responseUser.ok) {
-        throw new Error(`Error al obtener el usuario: ${responseUser.status}`);
+      // Debounce: evitar peticiones muy frecuentes
+      if (now - lastFetchRef.current < 3000) { // 3 segundos mínimo
+        return;
       }
+      lastFetchRef.current = now;
 
-      const data = await responseUser.json();
-      let idUser = data.data[0].id;
+      try {
+        setLoading(true);
+        
+        const headers = {
+          "Client-ID": CLIENT_ID,
+          Authorization: `Bearer ${TOKEN_API}`,
+        };
 
-      const dataUser = await fetch(
-        `https://api.twitch.tv/helix/channels?broadcaster_id=${idUser}`,
-        { headers }
-      );
+        if (!CLIENT_ID || !TOKEN_API) {
+          console.error("CLIENT_ID o TOKEN_API no están configurados correctamente.");
+          return;
+        }
 
-      if (!dataUser.ok) {
-        return null;
+        // Hacer todas las peticiones en paralelo para reducir el tiempo total
+        const [responseUser, liveStreamResponse] = await Promise.all([
+          fetch(`https://api.twitch.tv/helix/users?login=${user}`, { headers }),
+          fetch(`https://api.twitch.tv/helix/streams?user_login=${user}`, { headers })
+        ]);
+
+        if (!responseUser.ok) {
+          throw new Error(`Error al obtener el usuario: ${responseUser.status}`);
+        }
+
+        const userData = await responseUser.json();
+        const liveStreamData = await liveStreamResponse.json();
+        const isLive = liveStreamData.data.length > 0;
+        
+        if (userData.data.length === 0) {
+          console.error('Usuario no encontrado');
+          setLoading(false);
+          return;
+        }
+
+        const idUser = userData.data[0].id;
+
+        // Solo hacer peticiones adicionales si es necesario
+        const [dataUser, videosData] = await Promise.all([
+          fetch(`https://api.twitch.tv/helix/channels?broadcaster_id=${idUser}`, { headers }),
+          fetch(`https://api.twitch.tv/helix/videos?user_id=${idUser}&type=archive&first=6`, { headers }) // Limitar a 6 videos
+        ]);
+
+        let channelInfo = {};
+        let videos = [];
+
+        if (dataUser.ok) {
+          const channelData = await dataUser.json();
+          channelInfo = channelData.data[0] || {};
+        }
+
+        if (videosData.ok) {
+          const videosResponse = await videosData.json();
+          videos = videosResponse.data || [];
+        }
+
+        const fullData = {
+          ...userData.data[0],
+          ...channelInfo,
+          isLive: isLive,
+          liveViewers: isLive ? liveStreamData.data[0].viewer_count : 0
+        };
+
+        // Guardar en caché
+        cacheRef.current.set(cacheKey, {
+          data: fullData,
+          videos: videos,
+          timestamp: now
+        });
+
+        setStreamerLive(fullData);
+        setVideos(videos);
+        
+      } catch (error) {
+        console.error('Error fetching stream data:', error);
+      } finally {
+        setLoading(false);
       }
-      const dataInfo = await dataUser.json();
-
-      // obtener videos grabados de los streamers
-      const videosData = await fetch(
-        `https://api.twitch.tv/helix/videos?user_id=${idUser}&type=archive`,
-        { headers }
-      );
-      if (!videosData.ok) {
-        return null;
-      }
-      const videos = await videosData.json();
-      console.log(videos);
-      setVideos(videos.data || []);
-
-      const fullDta = {
-        ...data.data[0],
-        ...dataInfo.data[0],
-        ...videos.data[0],
-      };
-      console.log(fullDta);
-      setStreamerLive(fullDta);
-
-      return fullDta;
     };
+
     streamLive();
   }, [user]);
   return (
-    <div
-      className={` px-4 ml-20 flex flex-col h-full w-auto gap-y-4   ${
-        isActive ? "ml-64" : "ml-20"
-      }`}
-    >
-      {streamLive ? (
+    <div className={`px-4 ml-20 flex flex-col h-full w-auto gap-y-4 ${isActive ? "ml-64" : "ml-20"}`}>
+      {loading ? (
+        <div className="flex justify-center items-center h-[500px]">
+          <p className="text-xl">Cargando perfil de {user}...</p>
+        </div>
+      ) : streamLive ? (
         <>
+          {/* Mostrar estado del stream */}
+          <div className="mb-2">
+            {streamLive.isLive ? (
+              <span className="bg-red-600 text-white px-2 py-1 rounded text-sm">
+                🔴 EN VIVO - {streamLive.liveViewers} espectadores
+              </span>
+            ) : (
+              <span className="bg-gray-600 text-white px-2 py-1 rounded text-sm">
+                ⚫ DESCONECTADO
+              </span>
+            )}
+          </div>
+          
           <iframe
-            className="  border-t-2 border-rose  flex justify-center mx-auto h-[500px] w-full "
-            src={`https://player.twitch.tv/?channel=${user}&parent=${window.location.hostname}`}
+            className="border-t-2 border-rose flex justify-center mx-auto h-[500px] w-full"
+            src={`https://player.twitch.tv/?channel=${user}&parent=localhost&parent=suitch.netlify.app`}
+            onLoad={() => console.log('Iframe cargado correctamente')}
+            onError={(e) => console.error('Error al cargar iframe:', e)}
           ></iframe>
+
           <div className="flex flex-col gap-y-2 mx-2  ">
             <div className="flex items-center gap-x-2  border-[2px] border-black shadow-sm shadow-white/10  rounded-md p-2">
               <img
@@ -97,7 +159,7 @@ export function PerfilUser({ user }) {
                 </h1>
                 <h2 className=" text-xs">
                   {streamLive.view_count}{" "}
-                  <spam className="font-thin">Espectadores</spam>
+                  <span className="font-thin">Espectadores</span>
                 </h2>
                 <h2 className=" text-xs">{streamLive.description}</h2>
               </div>
@@ -159,7 +221,9 @@ export function PerfilUser({ user }) {
           <hr className=" mx-2 flex-1 border-t-1 border-zinc-800 " />
         </>
       ) : (
-        <p>Buscando al usuario...</p>
+        <div className="flex justify-center items-center h-[500px]">
+          <p className="text-xl">Usuario '{user}' no encontrado</p>
+        </div>
       )}
     </div>
   );
