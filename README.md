@@ -150,9 +150,9 @@ useEffect(() => {
 ```
 
 #### Paso 3: Cambio de URL del Iframe
-- **Problema**: `https://embed.twitch.tv/` mostraba chat no deseado
-- **Solución**: Usar `https://player.twitch.tv/` que solo muestra el reproductor
-- **Resultado**: Reproductor limpio sin chat
+- **Problema**: `https://play.twitch.tv/` causaba problemas de permisos y restricciones
+- **Solución**: Cambiar a `https://embed.twitch.tv/` que tiene políticas CORS más permisivas
+- **Resultado**: Reproductor funcional con menos restricciones de seguridad
 
 #### Paso 4: Habilitar Autoplay
 - **Problema**: Streams requerían clic manual para reproducirse
@@ -162,7 +162,6 @@ useEffect(() => {
 ### 🎯 Resultado Final
 - ✅ El iframe funciona correctamente al navegar directamente a URLs de perfiles
 - ✅ Reproducción automática de streams en vivo
-- ✅ No aparece chat de Twitch (solo reproductor)
 - ✅ Mejor experiencia de usuario con indicador de carga
 - ✅ Hidratación correcta del componente React en Astro
 
@@ -225,7 +224,7 @@ fetch('https://api.twitch.tv/helix/streams')
 **¿Cómo se soluciona?**
 1. **Parámetro parent**: Twitch requiere que especifiques tu dominio
    ```html
-   <iframe src="https://player.twitch.tv/?channel=usuario&parent=localhost"></iframe>
+   <iframe src="https://embed.twitch.tv/?channel=usuario&parent=localhost"></iframe>
    ```
 
 2. **Headers autorizados**: Usar las cabeceras correctas
