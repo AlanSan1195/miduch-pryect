@@ -9,6 +9,27 @@ export function PerfilUser({ user }) {
   const [loading, setLoading] = useState(true);
   const cacheRef = useRef(new Map()); // Cache para evitar peticiones repetidas
   const lastFetchRef = useRef(0);
+  const [hostname, setHostname] = useState(null);
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    // Asegurarse de que el código se ejecuta solo en el cliente
+    setIsClient(true);
+    if (typeof window !== "undefined") {
+      setHostname(window.location.hostname);
+    }
+  }, []);
+
+  // Forzar re-render después de la hidratación
+  useEffect(() => {
+    if (isClient && hostname) {
+      // Pequeño delay para asegurar que el DOM esté listo
+      const timer = setTimeout(() => {
+        console.log('Iframe listo para cargar con hostname:', hostname);
+      }, 100);
+      return () => clearTimeout(timer);
+    }
+  }, [isClient, hostname]);
 
   useEffect(() => {
     if (!user) {
@@ -139,12 +160,19 @@ export function PerfilUser({ user }) {
             )}
           </div>
           
-          <iframe
-            className="border-t-2 border-rose flex justify-center mx-auto h-[500px] w-full"
-            src={`https://player.twitch.tv/?channel=${user}&parent=localhost&parent=suitch.netlify.app`}
-            onLoad={() => console.log('Iframe cargado correctamente')}
-            onError={(e) => console.error('Error al cargar iframe:', e)}
-          ></iframe>
+          {isClient && hostname ? (
+            <iframe
+              className="border-t-2 border-rose flex justify-center mx-auto h-[500px] w-full"
+              src={`https://embed.twitch.tv/?channel=${user}&parent=${hostname}&autoplay=true`}
+              allowFullScreen
+              frameBorder="0"
+              scrolling="no"
+            ></iframe>
+          ) : (
+            <div className="border-t-2 border-rose flex justify-center mx-auto h-[500px] w-full bg-gray-800 items-center">
+              <p className="text-white">Cargando reproductor...</p>
+            </div>
+          )}
 
           <div className="flex flex-col gap-y-2 mx-2  ">
             <div className="flex items-center gap-x-2  border-[2px] border-black shadow-sm shadow-white/10  rounded-md p-2">
